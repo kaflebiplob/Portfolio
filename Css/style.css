@@ -110,7 +110,7 @@
   .right-mainpart {
     position: absolute;
     left: 20%;
-    height: 600vh;
+    /* height: 600vh; */
     width: 80%;
     background-color: rgb(31, 27, 27);
     overflow: hidden;
@@ -264,7 +264,7 @@
     font-weight: 400;
     letter-spacing: 2px;
     text-align: right;
-    margin-right: 8.5rem;
+    margin-right: 21.5rem;
   }
   .lineabout {
     position: relative;
