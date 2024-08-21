@@ -1,0 +1,11 @@
+.projects {
+  margin: 2rem 3rem 7rem 3rem;
+}
+.projects .project{
+    margin: 1rem 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+}
+.project .project-description{
+    margin: 1rem 0;
+}
