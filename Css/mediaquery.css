@@ -1,178 +1,139 @@
+@media screen and (max-width: 1360px) {
+  .contactrightside {
+    width: 50%;
+  }
+}
 @media screen and (min-width: 811px) {
-    .mobilehead {
-      display: none;
-    }
-    
+  .mobilehead {
+    display: none;
   }
   
-  @media screen and (max-width: 810px) {
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      line-height: 1.5;
-      scroll-behavior: smooth;
-    }
-   .mobilehead{
+}
+
+@media screen and (max-width: 756px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.5;
+    scroll-behavior: smooth;
+  }
+  .mobilehead {
     position: fixed;
     width: 100%;
     z-index: 1;
-   }
-    .left-circle {
-      visibility: hidden;
-    }
-    .sidebar-div {
-      font-size: 13px;
-    }
-    .right-mainpart {
-      position: relative;
-      right: 0;
-      left: 0;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      height: 800vh;
-    }
-  
-    .second-mainpart {
-      position: relative;
-      font-size: 17px;
-    }
-    .logo img {
-      height: 7.5rem;
-      width: auto;
-      margin-top: 4rem;
-    }
-    .logoname h5 {
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      margin-bottom: -1rem;
-    }
-    .nav_links {
-      display: block;
-      text-align: center;
-      font-size: 13px;
-    }
-    .social-icons{
-      justify-content: center;
-    }
-    .right-container-rightpart {
-      display: none;
-    }
-    .sidebar-div {
-      width: 70%;
-      height: 100vh;
-      background: black;
-      position: fixed;
-      left: -70%;
-      z-index: 1;
-      visibility: visible;
-    }
-    .aboutpart {
-      position: relative;
-      font-size: 13px;
-      margin: auto;
-      padding: 0;
-      left: 0;
-      right: 0;
-    }
-    .aboutme-head {
-      margin: auto;
-      text-align: left;
-      margin-left: 0.5rem;
-      font-size: 20px;
-    }
-    .lineabout {
-      position: absolute;
-      margin-left: 3.1rem;
-      left: 0;
-    }
-    .dotabout {
-      position: relative;
-      margin-left: 2.5rem;
-      left: 98px;
-      margin-top: 0.1rem;
-    }
-  
-    .aboutmecontainer {
-      display: flex;
-      flex-wrap: wrap-reverse;
-    }
-    .abtimg img {
-      position: relative;
-      width: 17rem;
-      margin-top: 3rem;
-      height: auto;
-    }
-    .SandE {
-      font-size: 14px;
-    }
-    .edu {
-      font-size: 20px;
-      /* margin: auto; */
-      margin: auto;
-      margin-left: -0.7rem;
-    }
-    .lineedu,
-    .dotedu {
-      margin-left: -0.7rem;
-    }
-  
-    .eduandskills {
-      display: flex;
-      flex-wrap: wrap;
-      margin: auto;
-    }
-  
-    .educationbar {
-      width: auto;
-      height: 21rem;
-    }
-    .skillbar-circle {
-      position: absolute;
-      left: 0;
-      right: 0;
-    }
-    .projectpart {
-      font-size: 15px;
-    }
-    .project-head {
-      font-size: 20px;
-      margin: auto;
-      margin-left: -0.7rem;
-    }
-    .projectline,
-    .projectdot {
-      margin-left: -0.7rem;
-    }
-    .contact-head {
-      font-size: 20px;
-      margin: auto;
-      margin-left: -0.7rem;
-    }
-    .contactline,
-    .contactdot {
-      margin-left: -0.7rem;
-    }
-    .contactdivide {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .leftcontactside {
-      margin-bottom: 3rem;
-      height: 25rem;
-    }
-    .contactrightside {
-      height: 25rem;
-      width: 18.2rem;
-      margin-bottom: 3rem;
-    }
-    .contactform {
-      width: 13rem;
-    }
-  
-    .footer {
-      margin-left: -0.7rem;
-    }
   }
+
+  .right-mainpart {
+    position: relative;
+    right: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* height: 800vh; */
+  }
+
+  .second-mainpart {
+    position: relative;
+    font-size: 17px;
+    margin-bottom: 2rem;
+  }
+
+  .right-mainpart img {
+    width: auto;
+    border-radius: 50%;
+  }
+
+  .aboutpart {
+    position: relative;
+    font-size: 13px;
+    margin: auto;
+    padding: 0;
+    left: 0;
+    right: 0;
+  }
+  .aboutme-head {
+    margin: auto;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 2rem;
+  }
+
+  .aboutmecontainer {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    margin-bottom: 3rem;
+  }
+  .aboutpart-right .intro-body {
+    text-align: center;
+  }
+
+  .SandE {
+    font-size: 14px;
+  }
+  .edu {
+    font-size: 20px;
+    /* margin: auto; */
+    margin: auto;
+    margin-left: -0.7rem;
+  }
+
+  .eduandskills {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+  }
+  .skill-box h3 {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .educationbar {
+    width: auto;
+    height: 100%;
+  }
+
+  .projectpart {
+    font-size: 15px;
+    margin: 0;
+    margin-top: 23 rem;
+  }
+  .project-head {
+    font-size: 20px;
+    margin: auto;
+    margin-left: -0.7rem;
+  }
+  .contactme {
+    margin: 0;
+  }
+
+  .contact-head {
+    font-size: 20px;
+    margin: auto;
+    margin-left: -0.7rem;
+  }
+  .contactline,
+  .contactdot {
+    margin-left: -0.7rem;
+  }
+  .contactdivide {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .leftcontactside {
+    margin-bottom: 3rem;
+    height: 25rem;
+  }
+  .contactrightside {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+  .contactform {
+    width: 15rem;
+  }
+  .footer {
+    margin-left: -0.7rem;
+  }
+}
