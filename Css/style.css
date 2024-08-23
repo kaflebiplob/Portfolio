@@ -10,15 +10,15 @@
     font-family: "Montserrat", sans-serif;
   }
   
-  .sidebar-div {
+  /* .sidebar-div {
     background-color: rgb(31, 27, 27);
     position: fixed;
     width: 20%;
     height: 100vh;
     background-color: #0c0c14;
     overflow: hidden;
-  }
-  .left-circle {
+  } */
+  /* .left-circle {
     content: "";
     margin: -2.9%;
     height: 7rem;
@@ -27,19 +27,19 @@
     background: #2fbf71;
     box-shadow: #2a474d;
     border-radius: 50%;
-  }
-  .logo {
+  } */
+  /* .logo {
     display: block;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .logo-img {
+  } */
+  /* .logo-img {
     width: 150px;
     border-radius: 50%;
     margin-top: 47px;
-  }
-  .logoname {
+  } */
+  /* .logoname {
     color: white;
     margin-bottom: 4rem;
     text-align: center;
@@ -48,7 +48,7 @@
     text-transform: uppercase;
     font-size: 13px;
     font-weight: 300;
-  }
+  } */
   .nav_links {
     font-family: "Montserrat", sans-serif;
     list-style: none;
@@ -108,10 +108,10 @@
   
   /* -----------------------------  BODY PART --------------------------*/
   .right-mainpart {
-    position: absolute;
-    left: 20%;
+    /* position: absolute; */
+    /* left: 20%; */
     /* height: 600vh; */
-    width: 80%;
+    /* width: 80%; */
     background-color: rgb(31, 27, 27);
     overflow: hidden;
   }
@@ -287,13 +287,12 @@
   .educationbar {
     background: #0b0b13;
     padding: 0;
-    height: 23.9rem;
-    width: 18rem;
+    /* height: 23.9rem; */
+    /* width: 18rem; */
+    width: 100%;
   }
   .edu-flexpart {
     width: 22rem;
-    /* margin-top: 5%; */
-    height: 25.4rem;
   }
   .eduandskills {
     /* display: flex; */
@@ -427,7 +426,7 @@
   }
   /* --------------------------Projects part------------------- */
   .projectpart {
-    margin-top: 17rem;
+    margin-top: 25rem;
   }
   .project-head {
     font-size: 2rem;
