@@ -5,7 +5,19 @@
     margin: 1rem 0;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     padding: 20px;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+.projects .projectTitle,
+.project-description {
+  text-align: center;
 }
 .project .project-description{
     margin: 1rem 0;
+}
+.githubTitle {
+  margin: 3rem 0;
 }
