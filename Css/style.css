@@ -296,12 +296,13 @@
     height: 25.4rem;
   }
   .eduandskills {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: space-between; */
     margin-right: 1rem;
     margin-left: 1rem;
     padding: 2rem 3rem 0rem 3rem;
+    height: fit-content;
   }
   
   .timebox {
@@ -329,10 +330,10 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
-  .edu-skills {
+  /* .edu-skills {
     height: 29rem;
     padding: 0 1.5% 0 5%;
-  }
+  } */
   .skill-box {
     margin-top: 5.7%;
     height: 29rem;
@@ -365,7 +366,7 @@
     height: 3px;
     background: #2fbf75;
   }
-  .skillbar-circle {
+  /* .skillbar-circle {
     width: 14px;
     height: 14px;
     border-radius: 50%;
@@ -373,7 +374,7 @@
     position: absolute;
     right: 2rem;
     top: -5px;
-  }
+  } */
   .css-line {
     margin-top: 3.4%;
   }
@@ -426,7 +427,7 @@
   }
   /* --------------------------Projects part------------------- */
   .projectpart {
-    margin-top: 7rem;
+    margin-top: 17rem;
   }
   .project-head {
     font-size: 2rem;
