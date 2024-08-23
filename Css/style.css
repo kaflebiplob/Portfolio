@@ -29,6 +29,7 @@ body {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  
 }
 .right-container-leftpart h4 {
   font-weight: 700;
@@ -42,18 +43,53 @@ body {
   letter-spacing: 0.9px;
   margin-bottom: 0.5rem;
 }
-.right-container-leftpart .head-one {
+.head-one{
+  text-align: center;
+  position: relative;
   margin-bottom: 1.7rem;
   line-height: 1.7;
-  text-align: center;
-
   font-weight: 500;
+  left: -40px;
+}
+.animation-class {
+  position: absolute;
+  opacity: 0;
+  animation: fadeInOut 6s infinite;
+  line-height: 1.7;
+  padding: 0 8px;
+  color: #2fbf71;
+  font-weight: 600;
+}
+.head-one span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.head-one span:nth-child(2) {
+  animation-delay: 2s;
+}
+
+.head-one span:nth-child(3) {
+  animation-delay: 4s;
+}
+
+
+@keyframes fadeInOut {
+  0%, 100% {
+      opacity: 0; 
+  }
+  5%, 33% {
+      opacity: 1; 
+  }
+  38% {
+      opacity: 0; 
+  }
 }
 .right-container-leftpart .intro-head-one {
   line-height: 1.7;
   font-weight: 500;
   margin-bottom: 2rem;
   text-align: center;
+  
 }
 .btn-head-one {
   border: 2px solid transparent;
@@ -222,10 +258,6 @@ a {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-/* .edu-skills {
-    height: 29rem;
-    padding: 0 1.5% 0 5%;
-  } */
 .skill-box {
   margin-top: 5.7%;
   height: 29rem;
@@ -241,15 +273,13 @@ a {
   margin-bottom: 1rem;
   font-size: 15px;
   letter-spacing: 1.7;
- 
-}
+ }
 .html-line {
   margin-top: 3.4%;
 }
 .skillbar {
   margin-top: 1%;
   position: relative;
-  /* content: ""; */
   width: 100%;
   height: 3px;
   background: #0b0b13;
@@ -308,7 +338,6 @@ h6 {
   font-family: "Rubik", monospac;
   text-align: center;
 }
-
 /* ------------------------------CONTACT ME-------------------------- */
 .contactme {
   margin-top: 9rem;
@@ -373,7 +402,7 @@ ul .media {
 .contactrightside {
   background-color: #0b0b13;
   /* height: 24rem; */
-  width: auto;
+  width: 50%;
   padding: 30px;
   margin-left: 3rem;
   margin-right: 3rem;
@@ -388,7 +417,6 @@ ul .media {
 }
 .contactform {
   display: flex;
-  /* justify-content: space-between; */
   flex-direction: column;
 }
 .contactform .contact-bot-name {
@@ -407,7 +435,6 @@ ul .media {
   color: white;
   padding: 0.3rem;
 }
-
 textarea {
   overflow: auto;
   resize: vertical;
@@ -427,12 +454,36 @@ textarea {
   background: #0b0b13;
   color: white;
 }
+
+/* ------------------------------Footer------------------------ */
 footer {
   font-weight: 600;
   color: #fff;
   font-family: "Rubik", monospac;
   margin-top: 4rem;
-  margin-left: 3.4rem;
+  background-color: #0b0b13;
+  text-align: center;
+padding: 30px;
+}
+.socialmedia{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.socailmedia-intro{
+text-align: center;
+margin-top: 1rem;
+
+}
+.socialmedia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.socialmedia a{
+  margin: 1rem 2rem;
+  font-weight: 200;
+  text-decoration: none;
 }
 /* ------------------------------Toogle----------------------- */
 .mobilehead {

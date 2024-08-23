@@ -133,7 +133,8 @@
   .contactform {
     width: 15rem;
   }
-  .footer {
-    margin-left: -0.7rem;
+  .socialmedia {
+    flex-direction: column;
   }
+
 }
