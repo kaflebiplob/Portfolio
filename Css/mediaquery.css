@@ -28,7 +28,6 @@
     line-height: 1.5;
     scroll-behavior: smooth;
   }
-
   .mobilehead {
     position: fixed;
     width: 100%;
@@ -47,7 +46,6 @@
   }
 
   .second-mainpart {
-    position: relative;
     font-size: 17px;
     margin-bottom: 2rem;
   }
@@ -58,12 +56,9 @@
   }
 
   .aboutpart {
-    position: relative;
     font-size: 13px;
     margin: auto;
     padding: 0;
-    left: 0;
-    right: 0;
   }
 
   .aboutme-head {
@@ -164,21 +159,20 @@
   .socialmedia {
     flex-direction: column;
   }
-
   .nav-links.active {
     flex-direction: column;
     position: relative;
-    top: 110px;
-    background-color: rgb(31, 27, 27);
+    top: 120px;
+    /* background-color: rgb(31, 27, 27); */
+    background-color: black;
     width: 100%;
-    z-index: 1;
-    opacity: 0.85;
+    z-index: 10;
+    left: -50px;
   }
 
   .nav-links li {
     padding: 0.5rem 0;
   }
-
 }
 
 @media screen and (max-width: 400px) {

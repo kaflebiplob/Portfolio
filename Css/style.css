@@ -6,11 +6,10 @@
   scroll-behavior: smooth;
 }
 
-body {
+body{
   color: rgba(255, 255, 255, 0.8);
   font-family: "Montserrat", sans-serif;
 }
-
 /* -----------------------Header part-------------------------------- */
 .headerpart {
   display: flex;
@@ -49,6 +48,11 @@ body {
 }
 
 /* -----------------------------  BODY PART --------------------------*/
+.themebutton {
+  position: relative;
+  left: 645px;
+}
+
 .right-mainpart {
   background-color: rgb(31, 27, 27);
   overflow: hidden;
@@ -76,6 +80,7 @@ body {
   line-height: 2.7;
   letter-spacing: 0.9px;
   text-align: center;
+  color: white;
 }
 
 .right-container-leftpart h1 {
@@ -85,11 +90,18 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.nav-links li:hover {
+.nav-links li a:hover {
   background-color: #2fbf71;
   transition: ease 0.3s;
   padding: 10px;
+  color: black;
 
+}
+
+#theme-toggle {
+  background-color: #2fbf71;
+  padding: 4px;
+  border: none;
 }
 
 .head-one {
@@ -100,6 +112,8 @@ body {
   font-weight: 500;
   left: -40px;
   font-size: 20px;
+  z-index: 1;
+  color: white;
 }
 
 .animation-class {
@@ -112,8 +126,9 @@ body {
   font-weight: 600;
   font-size: 20px;
 }
+
 .nav-links a.coloractive {
-  color: #2fbf71; 
+  color: #2fbf71;
 }
 
 .head-one span:nth-child(1) {
@@ -208,7 +223,7 @@ body {
 }
 
 .aboutpart-right .intro-body {
-  color: white;
+  /* color: white; */
   font-weight: 500;
   line-height: 1.7;
   margin-top: 31px;
@@ -227,13 +242,13 @@ body {
 .intro-minibody-1 .count {
   font-size: 50px;
   line-height: 1;
-  color: #fff;
+  /* color: #fff; */
   font-weight: 600;
   /* min-width: 55px; */
 }
 
 .intro-minibody-1 .spanbody {
-  color: #fff;
+  /* color: #fff; */
   padding-left: 10px;
   line-height: 1.3;
 }
@@ -353,9 +368,9 @@ a {
 }
 
 .edu-title2 {
-  color: white;
   font-weight: 600;
   margin: 0 0 15px;
+  color: white;
 }
 
 .skill-box p {
@@ -417,7 +432,7 @@ h6 {
   margin-top: 6rem;
   line-height: 1.7;
   font-family: "Rubik", monospac;
-  color: white;
+  /* color: white; */
   font-weight: 400;
   letter-spacing: 2px;
 }
@@ -434,7 +449,6 @@ h6 {
   line-height: 1.7;
   letter-spacing: 2px;
   padding: 0rem 3rem 0rem 4rem;
-  color: white;
   font-family: "Rubik", monospac;
   text-align: center;
 }
@@ -451,7 +465,7 @@ h6 {
   line-height: 1.7;
   letter-spacing: 2px;
   padding: 0rem 3rem 0rem 4rem;
-  color: white;
+  /* color: white; */
   text-align: center;
   font-family: "Rubik", monospac;
 }
@@ -461,6 +475,7 @@ h6 {
   align-items: center;
   justify-content: space-around;
   margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .leftcontactside {
@@ -576,7 +591,7 @@ footer {
   font-weight: 600;
   color: #fff;
   font-family: "Rubik", monospac;
-  margin-top: 4rem;
+  /* margin-top: 4rem; */
   background-color: #0b0b13;
   text-align: center;
   padding: 30px;
@@ -605,6 +620,10 @@ footer {
   font-weight: 200;
   text-decoration: none;
 }
+
+/* .socialmediaLink{
+  color: white;
+} */
 
 /* ------------------------------Toogle----------------------- */
 .mobilehead {
@@ -651,3 +670,63 @@ footer {
 .ham-toogle.active .hamburger {
   background-color: #ff6347;/
 }
+
+
+body.dark-mode {
+  /* color: #121212;  */
+  background-color: #ffffff !important;
+}
+
+body.dark-mode main,
+body.dark-mode footer,
+body.dark-mode .content {
+  background-color: white;
+  color: black;
+}
+
+
+body.dark-mode main h1,p,
+h2,
+h3,
+h4,
+h5,
+h6,
+body.dark-mode .aboutme-head,
+.socialmedia a,
+.projectTitle,
+.socailmedia-intro,.head-one {
+  color: black;
+}
+
+body.dark-mode .timebox3,
+.leftcontactside .contactdesc {
+  color: white;
+}
+/* body.dark-mode {
+  background-color: #121212; 
+  color: rgba(255, 255, 255, 0.8); 
+}
+body.dark-mode .headerpart {
+  background-color: black;
+}
+body.dark-mode .nav-links li a {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode .right-mainpart, 
+body.dark-mode .aboutme-head,
+body.dark-mode .contact-head,
+body.dark-mode .footer,
+body.dark-mode .project-head {
+color: #121212; 
+  background-color: rgba(255, 255, 255, 0.8); 
+  
+}
+#theme-toggle {
+  background-color: #2fbf71;
+  color: black;
+  border: none;
+}
+ody.dark-mode #theme-toggle {
+  color: white; 
+  background-color: #2fbf71; 
+}  */

@@ -14,10 +14,12 @@
 .projects .projectTitle,
 .project-description {
   text-align: center;
+  /* color: white; */
 }
 .project .project-description{
     margin: 1rem 0;
 }
 .githubTitle {
   margin: 3rem 0;
+  color: white;
 }
