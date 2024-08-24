@@ -9,7 +9,36 @@ body {
   color: rgba(255, 255, 255, 0.8);
   font-family: "Montserrat", sans-serif;
 }
-
+/* -----------------------Header part-------------------------------- */
+.headerpart{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:0 3rem ;
+  background-color: black;
+    height: 4rem;
+}
+.nav-links{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-links li{
+  list-style: none;
+  padding:0 1rem ;
+}
+.nav-links li a{
+  text-decoration: none;
+}
+.logoname h3{
+  font-size: 20px;
+  color: white;
+  font-family: "Rubik", monospac;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 2px;
+  letter-spacing: 2px;
+}
 /* -----------------------------  BODY PART --------------------------*/
 .right-mainpart {
   background-color: rgb(31, 27, 27);
@@ -18,7 +47,7 @@ body {
 
 .second-mainpart {
   display: flex;
-  padding: 9rem 3rem 0rem 3rem;
+  padding: 5rem 3rem 0rem 3rem;
   color: white;
   font-size: 17px;
   flex-direction: column;

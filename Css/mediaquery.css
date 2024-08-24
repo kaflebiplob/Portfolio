@@ -1,12 +1,22 @@
+@media screen and (max-width:2000px){
+  .mobilehead{
+    display: none;
+  }
+  
+}
 @media screen and (max-width: 1360px) {
   .contactrightside {
     width: 50%;
   }
+  .mobilehead{
+    display: none;
+  }
 }
-@media screen and (min-width: 811px) {
+@media screen and (max-width: 811px) {
   .mobilehead {
     display: none;
   }
+  
   
 }
 
@@ -22,6 +32,10 @@
     position: fixed;
     width: 100%;
     z-index: 1;
+    display: block;
+  }
+  .headerpart{
+    display: none;
   }
 
   .right-mainpart {
@@ -84,6 +98,13 @@
     flex-wrap: wrap;
     margin: auto;
   }
+  .skill-box{
+    height: 100%;
+    margin-bottom: 15rem;
+  }
+  .edu-skills{
+    height: 100%;
+  }
   .skill-box h3 {
     text-align: center;
     margin-top: 2rem;
@@ -97,7 +118,7 @@
   .projectpart {
     font-size: 15px;
     margin: 0;
-    margin-top: 23 rem;
+    margin-top: 3rem;
   }
   .project-head {
     font-size: 20px;
@@ -113,11 +134,7 @@
     margin: auto;
     margin-left: -0.7rem;
   }
-  .contactline,
-  .contactdot {
-    margin-left: -0.7rem;
-  }
-  .contactdivide {
+   .contactdivide {
     display: flex;
     flex-wrap: wrap;
   }
@@ -137,4 +154,14 @@
     flex-direction: column;
   }
 
+}
+@media screen and (max-width:400px) {
+  .projectpart{
+    margin-top: 8rem;
+    height: 100%;
+  }
+  .edu-skills{
+    height: 100%;
+margin-bottom: 2rem;
+  }
 }
