@@ -1,23 +1,23 @@
-@media screen and (max-width:2000px){
-  .mobilehead{
+@media screen and (max-width: 2000px) {
+  .mobilehead {
     display: none;
   }
-  
 }
+
 @media screen and (max-width: 1360px) {
   .contactrightside {
     width: 50%;
   }
-  .mobilehead{
+
+  .mobilehead {
     display: none;
   }
 }
+
 @media screen and (max-width: 811px) {
   .mobilehead {
     display: none;
   }
-  
-  
 }
 
 @media screen and (max-width: 756px) {
@@ -28,14 +28,12 @@
     line-height: 1.5;
     scroll-behavior: smooth;
   }
+
   .mobilehead {
     position: fixed;
     width: 100%;
     z-index: 1;
     display: block;
-  }
-  .headerpart{
-    display: none;
   }
 
   .right-mainpart {
@@ -67,6 +65,7 @@
     left: 0;
     right: 0;
   }
+
   .aboutme-head {
     margin: auto;
     text-align: center;
@@ -79,6 +78,7 @@
     flex-wrap: wrap-reverse;
     margin-bottom: 3rem;
   }
+
   .aboutpart-right .intro-body {
     text-align: center;
   }
@@ -86,6 +86,7 @@
   .SandE {
     font-size: 14px;
   }
+
   .edu {
     font-size: 20px;
     /* margin: auto; */
@@ -98,13 +99,16 @@
     flex-wrap: wrap;
     margin: auto;
   }
-  .skill-box{
+
+  .skill-box {
     height: 100%;
     margin-bottom: 15rem;
   }
-  .edu-skills{
+
+  .edu-skills {
     height: 100%;
   }
+
   .skill-box h3 {
     text-align: center;
     margin-top: 2rem;
@@ -120,11 +124,13 @@
     margin: 0;
     margin-top: 3rem;
   }
+
   .project-head {
     font-size: 20px;
     margin: auto;
     margin-left: -0.7rem;
   }
+
   .contactme {
     margin: 0;
   }
@@ -134,34 +140,55 @@
     margin: auto;
     margin-left: -0.7rem;
   }
-   .contactdivide {
+
+  .contactdivide {
     display: flex;
     flex-wrap: wrap;
   }
+
   .leftcontactside {
     margin-bottom: 3rem;
     height: 25rem;
   }
+
   .contactrightside {
     height: 100%;
     width: 100%;
     margin-bottom: 3rem;
   }
+
   .contactform {
     width: 15rem;
   }
+
   .socialmedia {
     flex-direction: column;
   }
 
+  .nav-links.active {
+    flex-direction: column;
+    position: relative;
+    top: 110px;
+    background-color: rgb(31, 27, 27);
+    width: 100%;
+    z-index: 1;
+    opacity: 0.85;
+  }
+
+  .nav-links li {
+    padding: 0.5rem 0;
+  }
+
 }
-@media screen and (max-width:400px) {
-  .projectpart{
+
+@media screen and (max-width: 400px) {
+  .projectpart {
     margin-top: 8rem;
     height: 100%;
   }
-  .edu-skills{
+
+  .edu-skills {
     height: 100%;
-margin-bottom: 2rem;
+    margin-bottom: 2rem;
   }
 }
