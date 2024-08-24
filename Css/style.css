@@ -19,6 +19,8 @@ body {
   padding: 0 3rem;
   background-color: black;
   height: 4rem;
+  position: fixed;
+  width: 100%;
 }
 
 .nav-links {
@@ -97,6 +99,7 @@ body {
   line-height: 1.7;
   font-weight: 500;
   left: -40px;
+  font-size: 20px;
 }
 
 .animation-class {
@@ -107,6 +110,10 @@ body {
   padding: 0 8px;
   color: #2fbf71;
   font-weight: 600;
+  font-size: 20px;
+}
+.nav-links a.coloractive {
+  color: #2fbf71; 
 }
 
 .head-one span:nth-child(1) {
