@@ -124,6 +124,7 @@
     font-size: 20px;
     margin: auto;
     margin-left: -0.7rem;
+    margin-top: 6rem;
   }
 
   .contactme {
@@ -174,10 +175,9 @@
     padding: 0.5rem 0;
   }
 }
-
 @media screen and (max-width: 400px) {
-  .projectpart {
-    margin-top: 8rem;
+  .project-head {
+    margin-top: 4rem;
     height: 100%;
   }
 
