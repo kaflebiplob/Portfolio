@@ -1,91 +1,102 @@
 body.dark-mode {
     background-color: #ffffff !important;
-  }
-  
-  body.dark-mode main,
-  body.dark-mode footer,
-  body.dark-mode .content {
+}
+
+body.dark-mode main,
+body.dark-mode footer,
+body.dark-mode .content {
     background-color: white;
-  
-  }
-  
-  
-  body.dark-mode
-  h4,
-  h5,
-  body.dark-mode .aboutme-head {
+
+}
+
+
+body.dark-mode h4,
+h5,
+body.dark-mode .aboutme-head {
     color: black;
-  }
-  
-  body.dark-mode .head-one {
+}
+
+body.dark-mode .head-one {
     color: black;
-  }
-  
-  body.dark-mode .intro-head-one {
+}
+
+body.dark-mode .intro-head-one {
     color: black;
-  }
-  
-  body.dark-mode .intro-about {
+}
+
+body.dark-mode .intro-about {
     color: black;
-  }
-  
-  body.dark-mode .intro-body {
+}
+
+body.dark-mode .intro-body {
     color: black;
-  }
-  
-  body.dark-mode .intro-minibody-1 {
+}
+
+body.dark-mode .intro-minibody-1 {
     color: black;
-  }
-  
-  body.dark-mode .edu {
+}
+
+body.dark-mode .edu {
     color: black;
-  }
-  
-  body.dark-mode .edu-intro {
+}
+
+body.dark-mode .edu-intro {
     color: black;
-  }
-  
-  body.dark-mode .edu-title2 {
+}
+
+body.dark-mode .edu-title2 {
     color: black;
-  }
-  
-  body.dark-mode .timebox3,
-  .leftcontactside .contactdesc {
+}
+
+body.dark-mode .timebox3,
+.leftcontactside .contactdesc {
     color: white;
-  }
-  
-  body.dark-mode .skill-box h6 {
+}
+
+body.dark-mode .skill-box h6 {
     color: black;
-  }
-  
-  body.dark-mode .project-head {
+}
+
+body.dark-mode .project-head {
     color: black;
-  }
-  
-  body.dark-mode .project {
+}
+
+body.dark-mode .project {
     color: black;
-  }
-  
-  body.dark-mode .project a {
+}
+
+body.dark-mode .project a {
     color: black;
-  }
-  
-  body.dark-mode .githubTitle {
+}
+
+body.dark-mode .githubTitle {
     color: black;
-  }
-  
-  body.dark-mode .contact-head {
+}
+
+body.dark-mode .contact-head {
     color: black;
-  }
-  
-  body.dark-mode .socialmedia a {
+}
+
+body.dark-mode .socialmedia a {
     color: black;
-  }
-  
-  body.dark-mode .socailmedia-intro {
+}
+
+body.dark-mode .socailmedia-intro {
     color: black;
-  }
-  
-  body.dark-mode footer {
+}
+
+body.dark-mode footer {
     color: black;
-  }
+}
+
+body.dark-mode .leftcontactside h4 {
+    color: white;
+}
+
+body.dark-mode .contactrightside h4 {
+    color: white;
+}
+
+body.dark-mode #contactform textarea {
+    color: white;
+}

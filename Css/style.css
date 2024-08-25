@@ -618,6 +618,7 @@ footer {
   font-weight: 200;
   text-decoration: none;
 }
+
 /* ------------------------------Toogle----------------------- */
 .mobilehead {
   background-color: black;
@@ -663,5 +664,3 @@ footer {
 .ham-toogle.active .hamburger {
   background-color: #ff6347;/
 }
-
-
