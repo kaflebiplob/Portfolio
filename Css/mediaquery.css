@@ -31,10 +31,14 @@
   .mobilehead {
     position: fixed;
     width: 100%;
-    z-index: 1;
+    z-index: 999;
     display: block;
   }
 
+  #project-image{
+    width: 300px;
+     height: auto;
+  }
   .right-mainpart {
     position: relative;
     right: 0;

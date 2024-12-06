@@ -21,6 +21,7 @@ body {
   height: 4rem;
   position: fixed;
   width: 100%;
+  z-index: 100;
 }
 
 .nav-links {
@@ -442,6 +443,10 @@ h6 {
 .projectpart {
   margin-top: 25rem;
 }
+#project-image{
+  width: 700px;
+  height: auto;
+}
 
 .project-head {
   font-size: 2rem;
@@ -624,6 +629,7 @@ footer {
   background-color: black;
   height: 4rem;
   width: 100%;
+ 
 }
 
 .mobilehead2 {
