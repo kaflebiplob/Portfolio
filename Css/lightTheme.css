@@ -1,102 +1,133 @@
 body.dark-mode {
-    background-color: #ffffff !important;
+  background-color: #ffffff !important;
 }
 
 body.dark-mode main,
 body.dark-mode footer,
 body.dark-mode .content {
-    background-color: white;
-
+  background-color: white;
 }
-
 
 body.dark-mode h4,
 h5,
 body.dark-mode .aboutme-head {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .head-one {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .intro-head-one {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .intro-about {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .intro-body {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .intro-minibody-1 {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .edu {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .edu-intro {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .edu-title2 {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .timebox3,
 .leftcontactside .contactdesc {
-    color: white;
+  color: white;
 }
 
 body.dark-mode .skill-box h6 {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .project-head {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .project {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .project a {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .githubTitle {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .contact-head {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .socialmedia a {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .socailmedia-intro {
-    color: black;
+  color: black;
 }
 
 body.dark-mode footer {
-    color: black;
+  color: black;
 }
 
 body.dark-mode .leftcontactside h4 {
-    color: white;
+  color: white;
 }
 
 body.dark-mode .contactrightside h4 {
-    color: white;
+  color: white;
 }
 
 body.dark-mode #contactform textarea {
-    color: white;
+  color: white;
+}
+
+body.dark-mode .edu-title2 {
+  color: white;
+}
+
+body.dark-mode .edu-intro {
+  color: white;
+}
+
+body.dark-mode .project-section {
+  background: none;
+}
+
+body.dark-mode .project-card {
+  background: white;
+  border: 1.5px solid #ccc;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+}
+body.dark-mode .section-title,
+body.dark-mode .project-title,
+body.dark-mode .project-description {
+  color: black;
+}
+
+body.dark-mode .project-link {
+  background-color: #6366f1;
+  color: black;
+}
+
+body.dark-mode .project-link:hover {
+  background-color: #4f46e5;
 }
