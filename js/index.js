@@ -57,6 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+/*
+
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactform");
   const sendbtn = document.getElementById("sendmessage");
@@ -80,3 +82,5 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("message").value = "";
   });
 });
+
+*/
