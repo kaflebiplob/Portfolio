@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import "./App.css";
-import img from "./assets/img.jpg";
+import img from "./assets/img.JPG";
 import CV from "./assets/BiplobCV.pdf";
 
 export default function App() {
