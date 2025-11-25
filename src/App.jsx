@@ -12,9 +12,11 @@ import {
   X,
   Calendar,
   Building2,
-  Instagram,
   Facebook,
+  CheckCircle,
+  AlertCircle,
 } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import "./App.css";
 import img from "./assets/img.jpg";
 import CV from "./assets/BiplobCV.pdf";
@@ -23,6 +25,14 @@ export default function App() {
   const [active, setActive] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [toast, setToast] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const homeRef = useRef(null);
   const projectsRef = useRef(null);
@@ -49,6 +59,99 @@ export default function App() {
     }
   };
 
+  const showToast = (message, type = "success") => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 5000);
+  };
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (!formData.name.trim()) {
+      errors.name = "Name is required";
+    } else if (formData.name.trim().length < 2) {
+      errors.name = "Name must be at least 2 characters";
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!emailRegex.test(formData.email)) {
+      errors.email = "Please enter a valid email address";
+    }
+
+    if (!formData.message.trim()) {
+      errors.message = "Message is required";
+    } else if (formData.message.trim().length < 10) {
+      errors.message = "Message must be at least 10 characters";
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (formErrors[name]) {
+      setFormErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      showToast("Please fix the errors in the form", "error");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+        throw new Error("EmailJS configuration is missing");
+      }
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        subject: `New Portfolio Message from ${formData.name}`,
+
+        name: formData.name,
+        email: formData.email,
+        reply_to: formData.email,
+      };
+
+      const response = await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        templateParams,
+        PUBLIC_KEY
+      );
+
+      // console.log("Email sent successfully:", response);
+
+      showToast(
+        "Message sent successfully! I'll get back to you soon.",
+        "success"
+      );
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      // console.error("Error sending message:", error);
+      showToast(
+        "Failed to send message. Please try again or email me directly.",
+        "error"
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   const projects = [
     {
       title: "Python/React E-commerce Platform",
@@ -118,6 +221,31 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
+      {toast && (
+        <div className="fixed top-20 right-4 z-50 animate-in slide-in-from-top-5 duration-300">
+          <div
+            className={`flex items-center gap-3 px-6 py-4 rounded-xl shadow-2xl border-2 ${
+              toast.type === "success"
+                ? "bg-green-50 border-green-500 text-green-800"
+                : "bg-red-50 border-red-500 text-red-800"
+            }`}
+          >
+            {toast.type === "success" ? (
+              <CheckCircle className="flex-shrink-0" size={24} />
+            ) : (
+              <AlertCircle className="flex-shrink-0" size={24} />
+            )}
+            <p className="font-semibold">{toast.message}</p>
+            <button
+              onClick={() => setToast(null)}
+              className="ml-2 hover:opacity-70 transition-opacity"
+            >
+              <X size={20} />
+            </button>
+          </div>
+        </div>
+      )}
+
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -255,7 +383,6 @@ export default function App() {
                 href="https://www.facebook.com/biplop.kafle"
                 target="_blank"
                 rel="noopener noreferrer"
-                useRef={contactRef}
                 className="p-4 bg-gray-900 hover:bg-blue-600 text-white rounded-xl transition-all duration-300 hover:scale-110 shadow-md hover:shadow-xl"
               >
                 <Facebook size={24} />
@@ -298,8 +425,6 @@ export default function App() {
                     { bg: "bg-purple-600", glow: "shadow-purple-500/50" },
                     { bg: "bg-orange-600", glow: "shadow-orange-500/50" },
                     { bg: "bg-teal-600", glow: "shadow-teal-500/50" },
-                    { bg: "bg-pink-600", glow: "shadow-pink-500/50" },
-                    { bg: "bg-red-600", glow: "shadow-red-500/50" },
                   ];
                   const color = colors[idx % colors.length];
 
@@ -372,7 +497,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* PROJECTS */}
       <section
         ref={projectsRef}
         className="py-20 bg-gradient-to-b from-gray-50 to-white"
@@ -392,7 +516,7 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
             {projects.map((p, i) => (
               <article
                 key={i}
@@ -462,23 +586,75 @@ export default function App() {
           </p>
           <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-xl border border-gray-200">
             <div className="space-y-5">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="w-full px-5 py-4 bg-gray-50 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:bg-white focus:outline-none transition-all text-sm sm:text-base"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full px-5 py-4 bg-gray-50 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:bg-white focus:outline-none transition-all text-sm sm:text-base"
-              />
-              <textarea
-                placeholder="Your Message"
-                rows="5"
-                className="w-full px-5 py-4 bg-gray-50 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:bg-white focus:outline-none transition-all resize-none text-sm sm:text-base"
-              ></textarea>
-              <button className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
-                Send Message
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Your Name"
+                  className={`w-full px-5 py-4 bg-gray-50 rounded-xl border-2 ${
+                    formErrors.name
+                      ? "border-red-500 focus:border-red-500"
+                      : "border-gray-200 focus:border-blue-500"
+                  } focus:bg-white focus:outline-none transition-all text-sm sm:text-base`}
+                />
+                {formErrors.name && (
+                  <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
+                    <AlertCircle size={14} />
+                    {formErrors.name}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Your Email"
+                  className={`w-full px-5 py-4 bg-gray-50 rounded-xl border-2 ${
+                    formErrors.email
+                      ? "border-red-500 focus:border-red-500"
+                      : "border-gray-200 focus:border-blue-500"
+                  } focus:bg-white focus:outline-none transition-all text-sm sm:text-base`}
+                />
+                {formErrors.email && (
+                  <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
+                    <AlertCircle size={14} />
+                    {formErrors.email}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Your Message"
+                  rows="5"
+                  className={`w-full px-5 py-4 bg-gray-50 rounded-xl border-2 ${
+                    formErrors.message
+                      ? "border-red-500 focus:border-red-500"
+                      : "border-gray-200 focus:border-blue-500"
+                  } focus:bg-white focus:outline-none transition-all resize-none text-sm sm:text-base`}
+                ></textarea>
+                {formErrors.message && (
+                  <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
+                    <AlertCircle size={14} />
+                    {formErrors.message}
+                  </p>
+                )}
+              </div>
+
+              <button
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
             </div>
           </div>
