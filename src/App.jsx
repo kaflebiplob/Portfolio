@@ -12,8 +12,12 @@ import {
   X,
   Calendar,
   Building2,
+  Instagram,
+  Facebook,
 } from "lucide-react";
 import "./App.css";
+import img from "./assets/img.jpg";
+import CV from "./assets/BiplobCV.pdf";
 
 export default function App() {
   const [active, setActive] = useState("home");
@@ -47,71 +51,79 @@ export default function App() {
 
   const projects = [
     {
-      title: "E-commerce Platform",
-      desc: "Full-stack store with cart, user auth, and payments.",
-      tech: ["React", "Django", "Postgres"],
+      title: "Python/React E-commerce Platform",
+      desc: "API-driven backend using Django REST Framework with React frontend and Redux state management. Custom admin panel for product, order, and user management.",
+      tech: ["React", "Django REST", "Postgress SQL"],
       color: "from-blue-500 to-indigo-500",
       link: "#",
     },
     {
-      title: "Embeddable Booking Widget",
-      desc: "Laravel-based embeddable booking widget with AJAX.",
-      tech: ["Laravel", "Blade", "MySQL"],
-      color: "from-blue-500 to-indigo-500",
+      title: "Travel & Hospital Embed Booking System",
+      desc: "Created embeddable booking widgets with REST APIs and payment integration. Admin panel for managing bookings, hospitals, and payment workflows.",
+      tech: ["Laravel", "REST API", "MySQL"],
+      color: "from-purple-500 to-pink-500",
       link: "#",
     },
     {
-      title: "Weather Dashboard",
-      desc: "Realtime dashboard with collaborative features.",
-      tech: ["React", "Django Channels"],
-      color: "from-blue-500 to-indigo-500",
+      title: "Bus Ticketing System",
+      desc: "Implemented real-time seat availability tracking and secure booking system with payment integration.",
+      tech: ["Laravel", "MySQL", "JavaScript"],
+      color: "from-green-500 to-teal-500",
+      link: "#",
+    },
+    {
+      title: "ABI E-commerce Platform",
+      desc: "Product management system with categorization, ordering, and admin tools featuring clean, scalable architecture.",
+      tech: ["Laravel 11", "Bootstrap", "MySQL"],
+      color: "from-orange-500 to-red-500",
       link: "#",
     },
   ];
 
   const skills = [
-    { name: "React", level: 85, icon: "⚛️" },
-    { name: "Django", level: 80, icon: "🐍" },
-    { name: "Laravel", level: 78, icon: "🔴" },
-    { name: "jQuery / Vanilla JS", level: 70, icon: "📜" },
+    { name: "JavaScript", level: 65, icon: "📜" },
+    { name: "Python/Django", level: 60, icon: "🐍" },
+    { name: "PHP/Laravel", level: 70, icon: "🐘" },
+    { name: "React", level: 68, icon: "⚛️" },
+    { name: "REST APIs", level: 70, icon: "🔌" },
+    { name: "MySQL/PosgressSQL", level: 60, icon: "💾" },
   ];
 
   const experience = [
     {
-      title: "Senior Full Stack Developer",
-      company: "Tech Solutions Inc.",
-      period: "2022 - Present",
+      title: "Junior Developer",
+      company: "Afore Solutions",
+      period: "Jun 2025 - Present",
       description:
-        "Led development of enterprise web applications using React and Django.",
+        "Developed and integrated scalable REST APIs for production. Performed backend optimization, debugging, and comprehensive QA testing.",
       icon: Building2,
     },
     {
-      title: "Full Stack Developer",
-      company: "Digital Agency",
-      period: "2020 - 2022",
+      title: "Junior Laravel Developer(Contract Based)",
+      company: "Mirrai Tech",
+      period: "May 2025 - Jun 2025",
       description:
-        "Built responsive web applications and RESTful APIs for various clients.",
-      icon: Briefcase,
+        "Built and maintained Laravel-based applications and admin dashboards. Improved application performance and ensured cross-browser compatibility.",
+      icon: Code,
     },
     {
-      title: "Junior Developer",
-      company: "StartUp Hub",
-      period: "2019 - 2020",
+      title: "Intern",
+      company: "SoftNEP Pvt. Ltd.",
+      period: "Jan 2025 - May 2025",
       description:
-        "Developed features and maintained codebases for multiple projects.",
-      icon: Code,
+        "Gained hands-on experience with full-stack development in production environment. Worked with professional MVC architecture and modern workflows.",
+      icon: Briefcase,
     },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
-      {/* NAV */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-blue-300 shadow-sm">
               <img
-                src=""
+                src={img}
                 alt="Biplob Kafle"
                 className="w-full h-full object-cover"
               />
@@ -140,7 +152,9 @@ export default function App() {
               </button>
             ))}
             <a
-              href="#"
+              href={CV}
+              target="_blank"
+              rel="noopener noreferrer"
               className="ml-2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all"
             >
               Resume
@@ -183,9 +197,9 @@ export default function App() {
           }`}
         >
           <div className="mx-auto max-w-2xl">
-            <div className="mx-auto w-36 h-36 rounded-full overflow-hidden ring-4 ring-gray-200 shadow-xl mb-8 transform hover:scale-105 transition-transform">
+            <div className="mx-auto w-56 h-56 rounded-full overflow-hidden ring-4 ring-gray-200 shadow-xl mb-8 transform hover:scale-105 transition-transform">
               <img
-                src=""
+                src={img}
                 alt="Biplob avatar"
                 className="w-full h-full object-cover"
               />
@@ -199,8 +213,9 @@ export default function App() {
             </h1>
 
             <p className="mt-4 text-lg md:text-xl text-gray-600 leading-relaxed">
-              Full-stack developer building clean web apps and delightful UX. I
-              focus on React, Django, and Laravel.
+              Full-stack developer specializing in Django, Laravel, React, and
+              REST API development. I focus on writing clean code, improving
+              performance, and following industry-standard workflows.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -221,105 +236,35 @@ export default function App() {
 
             <div className="flex mt-10 gap-4 justify-center">
               <a
-                href="#"
+                href="https://github.com/kaflebiplob/"
                 className="p-4 bg-gray-900 hover:bg-blue-600 text-white rounded-xl transition-all duration-300 hover:scale-110 shadow-md hover:shadow-xl"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Github size={24} />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/biplob-kafle-56b16925a/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-4 bg-gray-900 hover:bg-blue-600 text-white rounded-xl transition-all duration-300 hover:scale-110 shadow-md hover:shadow-xl"
               >
                 <Linkedin size={24} />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/biplop.kafle"
+                target="_blank"
+                rel="noopener noreferrer"
+                useRef={contactRef}
                 className="p-4 bg-gray-900 hover:bg-blue-600 text-white rounded-xl transition-all duration-300 hover:scale-110 shadow-md hover:shadow-xl"
               >
-                <Mail size={24} />
+                <Facebook size={24} />
               </a>
             </div>
           </div>
         </div>
       </header>
 
-      <section
-        ref={projectsRef}
-        className="py-20 bg-gradient-to-b from-gray-50 to-white"
-      >
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-semibold mb-4">
-              <Briefcase size={18} />
-              <span>My Work</span>
-            </div>
-
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900">
-              Featured Projects
-            </h2>
-
-            <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg">
-              Selected projects that highlight my skills and the problems I
-              enjoy solving
-            </p>
-          </div>
-
-          <div className="flex items-stretch gap-6 md:gap-8 overflow-x-auto no-scrollbar py-2 px-1">
-            {projects.map((p, i) => (
-              <article
-                key={i}
-                className="group bg-white rounded-2xl p-6 md:p-7 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 border border-gray-100 shrink-0 w-80 h-[420px] flex flex-col"
-              >
-                <div className="flex justify-between items-start mb-5">
-                  <div
-                    className={`p-3 bg-gradient-to-br ${p.color} rounded-xl shadow-md transition-transform group-hover:scale-110`}
-                  >
-                    <Code className="text-white" size={28} />
-                  </div>
-
-                  <button className="text-gray-400 hover:text-blue-600 transition-colors">
-                    <ExternalLink size={22} />
-                  </button>
-                </div>
-
-                <h3 className="text-xl md:text-2xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors">
-                  {p.title}
-                </h3>
-
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4">
-                  {p.desc}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {p.tech.map((t, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-xs md:text-sm font-medium hover:bg-gray-200 transition-all cursor-default"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="pt-4 border-t border-gray-100 mt-auto">
-                  <a
-                    href={p.link}
-                    className="inline-flex items-center gap-2 text-sm md:text-base font-semibold text-blue-600 hover:text-indigo-600 transition-colors group"
-                  >
-                    View Project
-                    <ArrowRight
-                      className="group-hover:translate-x-1 transition-transform"
-                      size={16}
-                    />
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SKILLS & EXPERIENCE */}
       <section
         ref={skillsRef}
         className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50"
@@ -339,7 +284,6 @@ export default function App() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
-            {/* Skills Column */}
             <div className="bg-white rounded-3xl p-6 md:p-8 shadow-xl border border-gray-200">
               <h3 className="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3 text-gray-900">
                 <Award className="text-blue-600" size={28} />
@@ -349,6 +293,13 @@ export default function App() {
                 {skills.map((s, idx) => {
                   const colors = [
                     { bg: "bg-blue-600", glow: "shadow-blue-500/50" },
+                    { bg: "bg-indigo-600", glow: "shadow-indigo-500/50" },
+                    { bg: "bg-green-600", glow: "shadow-green-500/50" },
+                    { bg: "bg-purple-600", glow: "shadow-purple-500/50" },
+                    { bg: "bg-orange-600", glow: "shadow-orange-500/50" },
+                    { bg: "bg-teal-600", glow: "shadow-teal-500/50" },
+                    { bg: "bg-pink-600", glow: "shadow-pink-500/50" },
+                    { bg: "bg-red-600", glow: "shadow-red-500/50" },
                   ];
                   const color = colors[idx % colors.length];
 
@@ -379,7 +330,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Experience Column */}
             <div className="bg-white rounded-3xl p-6 md:p-8 shadow-xl border border-gray-200">
               <h3 className="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3 text-gray-900">
                 <Calendar className="text-indigo-600" size={28} />
@@ -422,7 +372,82 @@ export default function App() {
         </div>
       </section>
 
-      {/* CONTACT */}
+      {/* PROJECTS */}
+      <section
+        ref={projectsRef}
+        className="py-20 bg-gradient-to-b from-gray-50 to-white"
+      >
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-semibold mb-4">
+              <Briefcase size={18} />
+              <span>My Work</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900">
+              Featured Projects
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg">
+              Selected projects that highlight my skills and the problems I
+              enjoy solving
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {projects.map((p, i) => (
+              <article
+                key={i}
+                className="group bg-white rounded-2xl p-6 md:p-7 shadow-lg hover:shadow-2xl 
+             transition-all duration-300 transform hover:-translate-y-3 
+             border border-gray-100 flex flex-col"
+              >
+                <div className="flex justify-between items-start mb-5">
+                  <div
+                    className={`p-3 bg-gradient-to-br ${p.color} rounded-xl shadow-md transition-transform group-hover:scale-110`}
+                  >
+                    <Code className="text-white" size={28} />
+                  </div>
+                  <button className="text-gray-400 hover:text-blue-600 transition-colors">
+                    <ExternalLink size={22} />
+                  </button>
+                </div>
+
+                <h3 className="text-xl md:text-2xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors">
+                  {p.title}
+                </h3>
+                <p className="text-sm md:text-base text-gray-600 mb-5 leading-relaxed">
+                  {p.desc}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {p.tech.map((t, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-xs md:text-sm font-medium hover:bg-gray-200 transition-all cursor-default"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="pt-4 border-t border-gray-100 mt-auto">
+                  <a
+                    href={p.link}
+                    className="inline-flex items-center gap-2 text-sm md:text-base font-semibold 
+               text-blue-600 hover:text-indigo-600 transition-colors group"
+                  >
+                    View Project
+                    <ArrowRight
+                      className="group-hover:translate-x-1 transition-transform"
+                      size={16}
+                    />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section
         ref={contactRef}
         className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8 flex items-center justify-center bg-white"
@@ -460,7 +485,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="py-8 text-center border-t border-gray-200 bg-gray-50">
         <p className="text-gray-600 text-sm sm:text-base">
           © 2023-2025 Biplob Kafle.
