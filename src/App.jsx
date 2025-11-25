@@ -154,32 +154,32 @@ export default function App() {
   };
   const projects = [
     {
-      title: "Python/React E-commerce Platform",
+      title: "Python/React E-commerce including API",
       desc: "API-driven backend using Django REST Framework with React frontend and Redux state management. Custom admin panel for product, order, and user management.",
       tech: ["React", "Django REST", "Postgress SQL"],
       color: "from-blue-500 to-indigo-500",
-      link: "#",
+      link: "https://github.com/kaflebiplob/ecommerce_py",
     },
     {
       title: "Travel & Hospital Embed Booking System",
       desc: "Created embeddable booking widgets with REST APIs and payment integration. Admin panel for managing bookings, hospitals, and payment workflows.",
       tech: ["Laravel", "REST API", "MySQL"],
       color: "from-purple-500 to-pink-500",
-      link: "#",
+      link: "https://github.com/kaflebiplob/travel_hospital_embed",
     },
     {
       title: "Bus Ticketing System",
       desc: "Implemented real-time seat availability tracking and secure booking system with payment integration.",
       tech: ["Laravel", "MySQL", "JavaScript"],
       color: "from-green-500 to-teal-500",
-      link: "#",
+      link: "https://github.com/kaflebiplob/busticketingsystem",
     },
     {
       title: "ABI E-commerce Platform",
       desc: "Product management system with categorization, ordering, and admin tools featuring clean, scalable architecture.",
       tech: ["Laravel 11", "Bootstrap", "MySQL"],
       color: "from-orange-500 to-red-500",
-      link: "#",
+      link: "https://github.com/kaflebiplob/ABI",
     },
   ];
 
@@ -558,6 +558,8 @@ export default function App() {
                     href={p.link}
                     className="inline-flex items-center gap-2 text-sm md:text-base font-semibold 
                text-blue-600 hover:text-indigo-600 transition-colors group"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     View Project
                     <ArrowRight
