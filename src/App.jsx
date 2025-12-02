@@ -158,7 +158,7 @@ export default function App() {
       desc: "API-driven backend using Django REST Framework with React frontend and Redux state management. Custom admin panel for product, order, and user management.",
       tech: ["React", "Django REST", "Postgress SQL"],
       color: "from-blue-500 to-indigo-500",
-      link: "https://github.com/kaflebiplob/ecommerce_py",
+      link: "https://ecommercepy.vercel.app/",
     },
     {
       title: "Travel & Hospital Embed Booking System",
