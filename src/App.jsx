@@ -132,21 +132,21 @@ export default function App() {
         SERVICE_ID,
         TEMPLATE_ID,
         templateParams,
-        PUBLIC_KEY
+        PUBLIC_KEY,
       );
 
       // console.log("Email sent successfully:", response);
 
       showToast(
         "Message sent successfully! I'll get back to you soon.",
-        "success"
+        "success",
       );
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       // console.error("Error sending message:", error);
       showToast(
         "Failed to send message. Please try again or email me directly.",
-        "error"
+        "error",
       );
     } finally {
       setIsSubmitting(false);
@@ -186,6 +186,7 @@ export default function App() {
   const skills = [
     { name: "JavaScript", level: 65, icon: "📜" },
     { name: "Python/Django", level: 60, icon: "🐍" },
+    { name: "FastAPI", level: 70, icon: "⚡" },
     { name: "PHP/Laravel", level: 70, icon: "🐘" },
     { name: "React", level: 68, icon: "⚛️" },
     { name: "REST APIs", level: 70, icon: "🔌" },
@@ -194,9 +195,17 @@ export default function App() {
 
   const experience = [
     {
+      title: "Junior Full stack Developer",
+      company: "Smart Solar Corporation",
+      period: "Dec 2025 - Present",
+      description:
+        "Working on Japanese webapps and related software solutions including ngrok, webhooks, redis as well as REST APIs. Involved in full software development lifecycle from design to deployment.",
+      icon: Building2,
+    },
+    {
       title: "Junior Developer",
       company: "Afore Solutions",
-      period: "Jun 2025 - Present",
+      period: "Jun 2025 - Jan 2026",
       description:
         "Developed and integrated scalable REST APIs for production. Performed backend optimization, debugging, and comprehensive QA testing.",
       icon: Building2,
@@ -231,9 +240,9 @@ export default function App() {
             }`}
           >
             {toast.type === "success" ? (
-              <CheckCircle className="flex-shrink-0" size={24} />
+              <CheckCircle className="shrink-0" size={24} />
             ) : (
-              <AlertCircle className="flex-shrink-0" size={24} />
+              <AlertCircle className="shrink-0" size={24} />
             )}
             <p className="font-semibold">{toast.message}</p>
             <button
@@ -283,7 +292,7 @@ export default function App() {
               href={CV}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all"
+              className="ml-2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-linear-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all"
             >
               Resume
             </a>
@@ -335,7 +344,7 @@ export default function App() {
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-4 text-gray-900">
               Hi, I'm{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+              <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-indigo-600">
                 Biplob Kafle
               </span>
             </h1>
@@ -349,7 +358,7 @@ export default function App() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <button
                 onClick={() => scrollTo("projects")}
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all font-semibold"
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all font-semibold"
               >
                 View my work <ArrowRight size={16} />
               </button>
@@ -394,7 +403,7 @@ export default function App() {
 
       <section
         ref={skillsRef}
-        className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50"
+        className="py-20 bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50"
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -446,7 +455,7 @@ export default function App() {
                           className={`absolute inset-0 ${color.bg} rounded-full transition-all duration-1000 ease-out ${color.glow} shadow-md`}
                           style={{ width: `${s.level}%` }}
                         >
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 animate-pulse"></div>
+                          <div className="absolute inset-0 bg-linear-to-r from-transparent via-white to-transparent opacity-20 animate-pulse"></div>
                         </div>
                       </div>
                     </div>
@@ -469,7 +478,7 @@ export default function App() {
                       className="group relative bg-gray-50 rounded-2xl p-5 hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-blue-300"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="p-3 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl shadow-md group-hover:scale-110 transition-transform">
+                        <div className="p-3 bg-linear-to-br from-blue-600 to-indigo-600 rounded-xl shadow-md group-hover:scale-110 transition-transform">
                           <Icon className="text-white" size={24} />
                         </div>
                         <div className="flex-1">
@@ -499,7 +508,7 @@ export default function App() {
 
       <section
         ref={projectsRef}
-        className="py-20 bg-gradient-to-b from-gray-50 to-white"
+        className="py-20 bg-linear-to-b from-gray-50 to-white"
       >
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -526,7 +535,7 @@ export default function App() {
               >
                 <div className="flex justify-between items-start mb-5">
                   <div
-                    className={`p-3 bg-gradient-to-br ${p.color} rounded-xl shadow-md transition-transform group-hover:scale-110`}
+                    className={`p-3 bg-linear-to-br ${p.color} rounded-xl shadow-md transition-transform group-hover:scale-110`}
                   >
                     <Code className="text-white" size={28} />
                   </div>
@@ -654,7 +663,7 @@ export default function App() {
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full py-4 bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>
