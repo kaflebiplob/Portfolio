@@ -19,7 +19,8 @@ import {
 import emailjs from "@emailjs/browser";
 import "./App.css";
 import img from "./assets/img.JPG";
-import CV from "./assets/BiplobCV.pdf";
+import home from "./assets/home.jpeg";
+import CV from "./assets/Biplob_cv.pdf";
 
 export default function App() {
   const [active, setActive] = useState("home");
@@ -191,6 +192,7 @@ export default function App() {
     { name: "React", level: 68, icon: "⚛️" },
     { name: "REST APIs", level: 70, icon: "🔌" },
     { name: "MySQL/PosgressSQL", level: 60, icon: "💾" },
+    { name: "AWS", level: 20, icon: "☁️" },
   ];
 
   const experience = [
@@ -260,7 +262,7 @@ export default function App() {
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-blue-300 shadow-sm">
               <img
-                src={img}
+                src={home}
                 alt="Biplob Kafle"
                 className="w-full h-full object-cover"
               />
@@ -336,7 +338,7 @@ export default function App() {
           <div className="mx-auto max-w-2xl">
             <div className="mx-auto w-56 h-56 rounded-full overflow-hidden ring-4 ring-gray-200 shadow-xl mb-8 transform hover:scale-105 transition-transform">
               <img
-                src={img}
+                src={home}
                 alt="Biplob avatar"
                 className="w-full h-full object-cover"
               />
@@ -350,22 +352,23 @@ export default function App() {
             </h1>
 
             <p className="mt-4 text-lg md:text-xl text-gray-600 leading-relaxed">
-              Full-stack developer specializing in Django, Laravel, React, and
-              REST API development. I focus on writing clean code, improving
-              performance, and following industry-standard workflows.
+              Full-stack developer with expertise in Python and PHP, building
+              scalable web applications and REST APIs. I focus on writing clean
+              code, improving performance, and following industry-standard
+              workflows.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <button
                 onClick={() => scrollTo("projects")}
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all font-semibold"
+                className="inline-flex items-center cursor-pointer gap-3 px-6 py-3 rounded-full bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all font-semibold"
               >
                 View my work <ArrowRight size={16} />
               </button>
 
               <button
                 onClick={() => scrollTo("contact")}
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:shadow-md transition-all font-semibold"
+                className="inline-flex cursor-pointer items-center gap-3 px-6 py-3 rounded-full bg-white border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:shadow-md transition-all font-semibold"
               >
                 <Mail size={16} /> Get in touch
               </button>
@@ -674,7 +677,7 @@ export default function App() {
 
       <footer className="py-8 text-center border-t border-gray-200 bg-gray-50">
         <p className="text-gray-600 text-sm sm:text-base">
-          © 2023-2025 Biplob Kafle.
+          © 2023-2026 Biplob Kafle.
         </p>
       </footer>
     </div>
