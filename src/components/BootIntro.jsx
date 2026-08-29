@@ -7,7 +7,7 @@ const BOOT_LINES = [
   { label: "Location: ", value: "Kathmandu, Nepal", type: "plain-value" },
   {
     label: "Status: ",
-    value: "Full-Stack Developer @ Smart Solar Corporation",
+    value: "Full-Stack Developer @ Jodnu Technology",
     type: "highlight",
   },
   {
