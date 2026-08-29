@@ -31,8 +31,6 @@ const SUBJECT_PRESETS = [
   { emoji: "💬", label: "General Inquiry" },
 ];
 
-// Terminal-flavored route hashes — mirrors the nav labels/CLI commands
-// instead of plain section ids like "#hero" or "#contact".
 const SECTION_HASHES = {
   home: "whoami",
   skills: "skills--la",
@@ -43,8 +41,6 @@ const HASH_TO_SECTION = Object.fromEntries(
   Object.entries(SECTION_HASHES).map(([key, hash]) => [hash, key]),
 );
 
-// Rotating role tagline shown in the hero — cycles through the roles
-// Biplob is building toward, per his CV research interests.
 const HERO_ROLES = [
   "Full-Stack Developer",
   "Data Science Enthusiast",
@@ -154,11 +150,10 @@ export default function App() {
         setTimeout(() => scrollTo(target), 150);
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
 
-  // Keep the URL hash in sync with whichever section is on screen while
-  // the person free-scrolls, without spamming browser history.
+  // Keep the URL hash in sync with whichever section is on screen
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -183,7 +178,7 @@ export default function App() {
     });
 
     return () => observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
 
   const showToast = (message, type = "success") => {
