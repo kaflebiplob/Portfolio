@@ -56,8 +56,7 @@ export default function CliTerminal({ open, onClose, onNavigate }) {
           "Biplob Kafle — Full-Stack Developer\nBuilding scalable web apps with Python, PHP & React.";
         break;
       case "skills":
-        out =
-          "JavaScript, Python/Django, FastAPI, PHP/Laravel, React, REST APIs, MySQL/PostgreSQL, AWS";
+        out = "JavaScript, Python/Django, FastAPI, PHP/Laravel, React, REST APIs, MySQL/PostgreSQL, AWS";
         onNavigate?.("skills");
         break;
       case "projects":
@@ -79,7 +78,7 @@ export default function CliTerminal({ open, onClose, onNavigate }) {
         ].join("\n");
         break;
       case "sudo hire":
-        out = "Permission granted.  Scroll to contact and send a message!";
+        out = "Permission granted. ✅ Scroll to contact and send a message!";
         onNavigate?.("contact");
         break;
       default:
@@ -119,14 +118,7 @@ export default function CliTerminal({ open, onClose, onNavigate }) {
           onClick={() => inputRef.current?.focus()}
         >
           {lines.map((line, i) => (
-            <div
-              key={i}
-              className={
-                line.startsWith("biplob@dev")
-                  ? "text-green-300"
-                  : "text-green-500/90"
-              }
-            >
+            <div key={i} className={line.startsWith("biplob@dev") ? "text-green-300" : "text-green-500/90"}>
               {line}
             </div>
           ))}

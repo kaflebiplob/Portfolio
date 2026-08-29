@@ -14,11 +14,44 @@ import {
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import "./App.css";
-import img from "./assets/img.JPG";
-import home from "./assets/home.jpeg";
 import CV from "./assets/Biplob_cv.pdf";
 import MatrixRain from "./components/MatrixRain";
 import CliTerminal from "./components/CliTerminal";
+
+const ROLES = [
+  "Full-Stack Developer",
+  "Python / Django Engineer",
+  "PHP / Laravel Developer",
+  "React Developer",
+];
+
+function useTypewriter(
+  words,
+  { typingSpeed = 70, deletingSpeed = 40, pause = 1400 } = {},
+) {
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    if (!deleting && subIndex === words[index].length) {
+      const t = setTimeout(() => setDeleting(true), pause);
+      return () => clearTimeout(t);
+    }
+    if (deleting && subIndex === 0) {
+      setDeleting(false);
+      setIndex((i) => (i + 1) % words.length);
+      return;
+    }
+    const t = setTimeout(
+      () => setSubIndex((s) => s + (deleting ? -1 : 1)),
+      deleting ? deletingSpeed : typingSpeed,
+    );
+    return () => clearTimeout(t);
+  }, [subIndex, deleting, index, words, typingSpeed, deletingSpeed, pause]);
+
+  return words[index].substring(0, subIndex);
+}
 
 export default function App() {
   const [active, setActive] = useState("home");
@@ -43,6 +76,8 @@ export default function App() {
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const typedRole = useTypewriter(ROLES);
 
   const sections = {
     home: homeRef,
@@ -387,36 +422,25 @@ export default function App() {
                 biplob@dev:~$ <span className="text-green-300">whoami</span>
               </p>
 
-              <div className="flex flex-col sm:flex-row items-start gap-6 mb-6">
-                <div className="w-24 h-24 sm:w-28 sm:h-28 shrink-0 rounded overflow-hidden border-2 border-green-500/40">
-                  <img
-                    src={home}
-                    alt="Biplob Kafle"
-                    className="w-full h-full object-cover"
-                  />
+              <div className="text-sm sm:text-base leading-relaxed space-y-1.5 mb-6">
+                <div>
+                  <span className="text-green-600">NAME</span>{" "}
+                  <span className="text-green-200">: Biplob Kafle</span>
                 </div>
-
-                <div className="text-sm sm:text-base leading-relaxed space-y-1">
-                  <div>
-                    <span className="text-green-600">NAME</span>{" "}
-                    <span className="text-green-200">: Biplob Kafle</span>
-                  </div>
-                  <div>
-                    <span className="text-green-600">ROLE</span>{" "}
-                    <span className="text-green-200">
-                      : Full-Stack Developer
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-green-600">STACK</span>{" "}
-                    <span className="text-green-200">
-                      : Python / PHP / React
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-green-600">STATUS</span>{" "}
-                    <span className="text-green-200">: Always building</span>
-                  </div>
+                <div className="min-h-[1.5em]">
+                  <span className="text-green-600">ROLE</span>{" "}
+                  <span className="text-green-200">
+                    : {typedRole}
+                    <span className="terminal-cursor"></span>
+                  </span>
+                </div>
+                <div>
+                  <span className="text-green-600">STACK</span>{" "}
+                  <span className="text-green-200">: Python / PHP / React</span>
+                </div>
+                <div>
+                  <span className="text-green-600">STATUS</span>{" "}
+                  <span className="text-green-200">: Always building</span>
                 </div>
               </div>
 
@@ -704,7 +728,36 @@ export default function App() {
         </div>
       </section>
 
-      <footer className="relative z-10 py-8 text-center border-t border-green-500/20 text-green-700 text-xs sm:text-sm">
+      <footer className="relative z-10 py-10 text-center border-t border-green-500/20 text-green-700 text-xs sm:text-sm">
+        <div className="flex justify-center gap-4 mb-5">
+          <a
+            href="https://github.com/kaflebiplob/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="p-3 border border-green-500/30 rounded text-green-500 hover:text-green-300 hover:border-green-400/60 hover:bg-green-500/10 transition-all"
+          >
+            <Github size={18} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/biplob-kafle-56b16925a/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="p-3 border border-green-500/30 rounded text-green-500 hover:text-green-300 hover:border-green-400/60 hover:bg-green-500/10 transition-all"
+          >
+            <Linkedin size={18} />
+          </a>
+          <a
+            href="https://www.facebook.com/biplop.kafle"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            className="p-3 border border-green-500/30 rounded text-green-500 hover:text-green-300 hover:border-green-400/60 hover:bg-green-500/10 transition-all"
+          >
+            <Facebook size={18} />
+          </a>
+        </div>
         <p>
           © 2023-2026 Biplob Kafle. Not a person, a process — always building.
         </p>
