@@ -17,41 +17,7 @@ import "./App.css";
 import CV from "./assets/Biplob_cv.pdf";
 import MatrixRain from "./components/MatrixRain";
 import CliTerminal from "./components/CliTerminal";
-
-const ROLES = [
-  "Full-Stack Developer",
-  "Python / Django Engineer",
-  "PHP / Laravel Developer",
-  "React Developer",
-];
-
-function useTypewriter(
-  words,
-  { typingSpeed = 70, deletingSpeed = 40, pause = 1400 } = {},
-) {
-  const [index, setIndex] = useState(0);
-  const [subIndex, setSubIndex] = useState(0);
-  const [deleting, setDeleting] = useState(false);
-
-  useEffect(() => {
-    if (!deleting && subIndex === words[index].length) {
-      const t = setTimeout(() => setDeleting(true), pause);
-      return () => clearTimeout(t);
-    }
-    if (deleting && subIndex === 0) {
-      setDeleting(false);
-      setIndex((i) => (i + 1) % words.length);
-      return;
-    }
-    const t = setTimeout(
-      () => setSubIndex((s) => s + (deleting ? -1 : 1)),
-      deleting ? deletingSpeed : typingSpeed,
-    );
-    return () => clearTimeout(t);
-  }, [subIndex, deleting, index, words, typingSpeed, deletingSpeed, pause]);
-
-  return words[index].substring(0, subIndex);
-}
+import BootIntro from "./components/BootIntro";
 
 export default function App() {
   const [active, setActive] = useState("home");
@@ -60,6 +26,7 @@ export default function App() {
   const [toast, setToast] = useState(null);
   const [matrixOn, setMatrixOn] = useState(true);
   const [cliOpen, setCliOpen] = useState(false);
+  const [bootDone, setBootDone] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -76,8 +43,6 @@ export default function App() {
   useEffect(() => {
     setIsVisible(true);
   }, []);
-
-  const typedRole = useTypewriter(ROLES);
 
   const sections = {
     home: homeRef,
@@ -270,7 +235,7 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#05070a] text-green-400 font-mono-term crt-scanlines relative">
+    <div className="min-h-screen bg-[#0a0e14] text-green-400 font-mono-term crt-scanlines relative">
       <MatrixRain active={matrixOn} />
       <CliTerminal
         open={cliOpen}
@@ -407,91 +372,72 @@ export default function App() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <div className="rounded-lg border border-green-500/30 bg-black/70 shadow-[0_0_30px_rgba(34,197,94,0.08)] overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-2 bg-green-950/30 border-b border-green-500/20">
+          <div className="rounded-lg border border-slate-700/50 bg-[#0d1117]/90 shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden">
+            <div className="flex items-center gap-2 px-4 py-2 bg-black/40 border-b border-slate-700/50">
               <span className="w-3 h-3 rounded-full bg-red-500/70" />
               <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
               <span className="w-3 h-3 rounded-full bg-green-500/70" />
-              <span className="ml-3 text-xs text-green-500/70">
-                biplob@dev: ~/whoami
+              <span className="ml-3 text-xs text-slate-500">biplob@dev: ~</span>
+              <span className="ml-auto text-[10px] text-slate-600 hidden sm:inline">
+                [Ctrl + ~ for full CLI]
               </span>
             </div>
 
             <div className="p-5 sm:p-8">
-              <p className="text-green-500 text-sm mb-4">
-                biplob@dev:~$ <span className="text-green-300">whoami</span>
-              </p>
+              <BootIntro onDone={() => setBootDone(true)} />
 
-              <div className="text-sm sm:text-base leading-relaxed space-y-1.5 mb-6">
-                <div>
-                  <span className="text-green-600">NAME</span>{" "}
-                  <span className="text-green-200">: Biplob Kafle</span>
-                </div>
-                <div className="min-h-[1.5em]">
-                  <span className="text-green-600">ROLE</span>{" "}
-                  <span className="text-green-200">
-                    : {typedRole}
-                    <span className="terminal-cursor"></span>
-                  </span>
-                </div>
-                <div>
-                  <span className="text-green-600">STACK</span>{" "}
-                  <span className="text-green-200">: Python / PHP / React</span>
-                </div>
-                <div>
-                  <span className="text-green-600">STATUS</span>{" "}
-                  <span className="text-green-200">: Always building</span>
-                </div>
-              </div>
+              {bootDone && (
+                <div className="animate-in fade-in duration-500 mt-8">
+                  <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8 border-l-2 border-green-500/30 pl-4">
+                    Full-stack developer with expertise in Python and PHP,
+                    building scalable web applications and REST APIs. I focus on
+                    writing clean code, improving performance, and following
+                    industry-standard workflows.
+                  </p>
 
-              <p className="text-green-500/90 text-sm sm:text-base leading-relaxed mb-8 border-l-2 border-green-500/30 pl-4">
-                Full-stack developer with expertise in Python and PHP, building
-                scalable web applications and REST APIs. I focus on writing
-                clean code, improving performance, and following
-                industry-standard workflows.
-              </p>
+                  <div className="flex flex-wrap gap-3 mb-6">
+                    <button
+                      onClick={() => scrollTo("projects")}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded border border-green-500 bg-green-500/10 text-green-300 hover:bg-green-500/20 transition-all text-sm font-semibold"
+                    >
+                      ./view-projects.sh <ArrowRight size={14} />
+                    </button>
+                    <button
+                      onClick={() => scrollTo("contact")}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded border border-orange-400/50 text-orange-400 hover:bg-orange-400/10 transition-all text-sm font-semibold"
+                    >
+                      <Mail size={14} /> $ send --message
+                    </button>
+                  </div>
 
-              <div className="flex flex-wrap gap-3 mb-6">
-                <button
-                  onClick={() => scrollTo("projects")}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded border border-green-500 bg-green-500/10 text-green-300 hover:bg-green-500/20 transition-all text-sm font-semibold"
-                >
-                  ./view-projects.sh <ArrowRight size={14} />
-                </button>
-                <button
-                  onClick={() => scrollTo("contact")}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded border border-green-500/40 text-green-400 hover:bg-green-500/10 transition-all text-sm font-semibold"
-                >
-                  <Mail size={14} /> $ send --message
-                </button>
-              </div>
-
-              <div className="flex gap-3">
-                <a
-                  href="https://github.com/kaflebiplob/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 border border-green-500/40 rounded text-green-400 hover:bg-green-500/10 transition-all"
-                >
-                  <Github size={20} />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/biplob-kafle-56b16925a/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 border border-green-500/40 rounded text-green-400 hover:bg-green-500/10 transition-all"
-                >
-                  <Linkedin size={20} />
-                </a>
-                <a
-                  href="https://www.facebook.com/biplop.kafle"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 border border-green-500/40 rounded text-green-400 hover:bg-green-500/10 transition-all"
-                >
-                  <Facebook size={20} />
-                </a>
-              </div>
+                  <div className="flex gap-3">
+                    <a
+                      href="https://github.com/kaflebiplob/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 border border-slate-700/60 rounded text-slate-300 hover:text-green-400 hover:border-green-500/50 transition-all"
+                    >
+                      <Github size={20} />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/biplob-kafle-56b16925a/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 border border-slate-700/60 rounded text-slate-300 hover:text-green-400 hover:border-green-500/50 transition-all"
+                    >
+                      <Linkedin size={20} />
+                    </a>
+                    <a
+                      href="https://www.facebook.com/biplop.kafle"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 border border-slate-700/60 rounded text-slate-300 hover:text-green-400 hover:border-green-500/50 transition-all"
+                    >
+                      <Facebook size={20} />
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 

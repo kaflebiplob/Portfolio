@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --term-bg: #05070a;
-  --term-panel: #0a0f0d;
+  --term-bg: #0a0e14;
+  --term-panel: #0d1117;
   --term-green: #22c55e;
   --term-green-dim: #16a34a;
   --term-amber: #f59e0b;
-  --term-border: rgba(34, 197, 94, 0.25);
+  --term-orange: #fb923c;
+  --term-border: rgba(148, 163, 184, 0.15);
 }
 
 body {
@@ -66,4 +67,59 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(34, 197, 94, 0.5);
+}
+
+/* glitch title effect */
+.glitch-title {
+  position: relative;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+.glitch-title::before,
+.glitch-title::after {
+  content: "BIPLOB";
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 0 0 0);
+}
+
+.glitch-title::before {
+  color: #ef4444;
+  transform: translate(-2px, 0);
+  opacity: 0.6;
+  animation: glitch-shift 3.2s infinite linear alternate-reverse;
+}
+
+.glitch-title::after {
+  color: #22d3ee;
+  transform: translate(2px, 0);
+  opacity: 0.6;
+  animation: glitch-shift 2.6s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-shift {
+  0% {
+    clip-path: inset(0 0 90% 0);
+  }
+  20% {
+    clip-path: inset(30% 0 40% 0);
+  }
+  40% {
+    clip-path: inset(60% 0 10% 0);
+  }
+  60% {
+    clip-path: inset(10% 0 70% 0);
+  }
+  80% {
+    clip-path: inset(80% 0 5% 0);
+  }
+  100% {
+    clip-path: inset(0 0 90% 0);
+  }
+}
+
+.terminal-cursor-orange::after {
+  content: "_";
+  animation: blink 1s steps(1) infinite;
+  color: var(--term-orange);
 }
