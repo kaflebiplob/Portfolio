@@ -83,7 +83,7 @@ export default function BootIntro({ onDone }) {
       {showTitle && (
         <div className="mt-8 animate-in fade-in duration-500">
           <h1 className="glitch-title text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-cyan-400">
-            BIPLOB
+            BIPLOB KAFLE
           </h1>
           <p className="mt-3 text-xl sm:text-2xl text-orange-400 font-semibold">
             &gt; <span className="terminal-cursor-orange">Full-Stack Dev</span>

@@ -536,7 +536,7 @@ export default function App() {
                   <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8 border-l-2 border-green-500/30 pl-4">
                     Computer Science graduate with professional experience in
                     backend systems, scalable APIs, and cloud-based applications
-                    — now pursuing graduate study in Artificial Intelligence to
+                    — now thinking of pursuing graduate study in Artificial Intelligence to
                     build toward machine learning, intelligent systems, and
                     AI-driven software.
                   </p>

@@ -80,6 +80,7 @@ body {
 }
 
 .glitch-title::before {
+  content: "BIPLOB KAFLE";
   color: #ef4444;
   transform: translate(-2px, 0);
   opacity: 0.6;
@@ -87,12 +88,12 @@ body {
 }
 
 .glitch-title::after {
-  color: #22d3ee;
+  content: "BIPLOB KAFLE";
+  color: #6366f1;
   transform: translate(2px, 0);
   opacity: 0.6;
   animation: glitch-shift 2.6s infinite linear alternate-reverse;
 }
-
 @keyframes glitch-shift {
   0% {
     clip-path: inset(0 0 90% 0);
