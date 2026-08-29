@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 
 const BOOT_LINES = [
@@ -57,8 +56,8 @@ export default function BootIntro({ onDone }) {
                   line.type === "highlight"
                     ? "text-green-400 font-semibold"
                     : line.type === "accent"
-                    ? "text-orange-400 font-semibold"
-                    : "text-slate-300"
+                      ? "text-orange-400 font-semibold"
+                      : "text-slate-300"
                 }
               >
                 {line.value}
@@ -83,7 +82,7 @@ export default function BootIntro({ onDone }) {
 
       {showTitle && (
         <div className="mt-8 animate-in fade-in duration-500">
-          <h1 className="glitch-title text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white">
+          <h1 className="glitch-title text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-cyan-400">
             BIPLOB
           </h1>
           <p className="mt-3 text-xl sm:text-2xl text-orange-400 font-semibold">
