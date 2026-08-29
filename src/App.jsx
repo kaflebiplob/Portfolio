@@ -11,6 +11,8 @@ import {
   AlertCircle,
   TerminalSquare,
   Zap,
+  Copy,
+  Check,
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import "./App.css";
@@ -18,6 +20,16 @@ import CV from "./assets/Biplob_cv.pdf";
 import MatrixRain from "./components/MatrixRain";
 import CliTerminal from "./components/CliTerminal";
 import BootIntro from "./components/BootIntro";
+
+const CONTACT_EMAIL = "biplobkafle21@gmail.com";
+const UPTIME_EPOCH = new Date("2026-01-01T00:00:00Z").getTime();
+
+const SUBJECT_PRESETS = [
+  { emoji: "💼", label: "Job Opportunity" },
+  { emoji: "🤝", label: "Collab / Freelance" },
+  { emoji: "🎓", label: "Grad School / Research" },
+  { emoji: "💬", label: "General Inquiry" },
+];
 
 export default function App() {
   const [active, setActive] = useState("home");
@@ -30,10 +42,13 @@ export default function App() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    subject: "",
     message: "",
   });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+  const [uptime, setUptime] = useState("");
 
   const homeRef = useRef(null);
   const projectsRef = useRef(null);
@@ -42,6 +57,19 @@ export default function App() {
 
   useEffect(() => {
     setIsVisible(true);
+  }, []);
+
+  useEffect(() => {
+    const tick = () => {
+      const diff = Math.max(0, Date.now() - UPTIME_EPOCH);
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins = Math.floor((diff % 3600000) / 60000);
+      setUptime(`${days}d ${hours}h ${mins}m`);
+    };
+    tick();
+    const id = setInterval(tick, 30000);
+    return () => clearInterval(id);
   }, []);
 
   const sections = {
@@ -100,6 +128,17 @@ export default function App() {
     }
   };
 
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setEmailCopied(true);
+      showToast("Email copied to clipboard", "success");
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch {
+      showToast("Couldn't copy — email is above", "error");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -123,7 +162,8 @@ export default function App() {
         from_name: formData.name,
         from_email: formData.email,
         message: formData.message,
-        subject: `New Portfolio Message from ${formData.name}`,
+        subject:
+          formData.subject || `New Portfolio Message from ${formData.name}`,
         name: formData.name,
         email: formData.email,
         reply_to: formData.email,
@@ -135,7 +175,7 @@ export default function App() {
         "Message sent successfully! I'll get back to you soon.",
         "success",
       );
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
       showToast(
         "Failed to send message. Please try again or email me directly.",
@@ -559,7 +599,7 @@ export default function App() {
         ref={contactRef}
         className="relative z-10 py-20 px-4 flex items-center justify-center"
       >
-        <div className="max-w-xl mx-auto w-full">
+        <div className="max-w-4xl mx-auto w-full">
           <p className="text-green-500 text-sm mb-2">
             biplob@dev:~${" "}
             <span className="text-green-300">send --message --to=biplob</span>
@@ -568,106 +608,239 @@ export default function App() {
             # Let's Work Together
           </h2>
           <p className="text-slate-400 text-sm mb-8">
-            Have a project in mind? Drop a message below.
+            Have a project, a role, or just want to talk shop? Drop a message
+            below.
           </p>
 
-          <div className="rounded-lg border border-slate-700/50 bg-[#0d1117]/90 overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-2 bg-black/40 border-b border-slate-700/50">
-              <span className="text-xs text-slate-500">compose-message.sh</span>
+          <div className="grid lg:grid-cols-5 gap-6 items-start">
+            {/* FORM */}
+            <div className="lg:col-span-3 rounded-lg border border-slate-700/50 bg-[#0d1117]/90 overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-2 bg-black/40 border-b border-slate-700/50">
+                <span className="text-xs text-slate-500">
+                  compose-message.sh
+                </span>
+              </div>
+
+              <div className="p-5 sm:p-6 space-y-4">
+                <div>
+                  <label className="block text-xs text-slate-500 mb-1">
+                    &gt; To:
+                  </label>
+                  <div className="flex gap-2">
+                    <div className="flex-1 px-3 py-2 bg-black/60 border border-slate-700/60 rounded text-green-300 text-sm truncate">
+                      {CONTACT_EMAIL}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleCopyEmail}
+                      className="shrink-0 flex items-center gap-1.5 px-3 py-2 rounded border border-slate-700/60 text-slate-300 hover:border-green-500/50 hover:text-green-400 transition-all text-xs"
+                    >
+                      {emailCopied ? (
+                        <>
+                          <Check size={13} /> Copied
+                        </>
+                      ) : (
+                        <>
+                          <Copy size={13} /> Copy
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs text-slate-500 mb-1">
+                    &gt; From (your name):
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="John Doe"
+                    className={`w-full px-3 py-2 bg-black/60 border rounded text-green-300 text-sm placeholder-slate-600 focus:outline-none ${
+                      formErrors.name
+                        ? "border-red-500"
+                        : "border-slate-700/60 focus:border-green-400"
+                    }`}
+                  />
+                  {formErrors.name && (
+                    <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
+                      <AlertCircle size={12} />
+                      {formErrors.name}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-xs text-slate-500 mb-1">
+                    &gt; Reply-to (your email):
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="you@example.com"
+                    className={`w-full px-3 py-2 bg-black/60 border rounded text-green-300 text-sm placeholder-slate-600 focus:outline-none ${
+                      formErrors.email
+                        ? "border-red-500"
+                        : "border-slate-700/60 focus:border-green-400"
+                    }`}
+                  />
+                  {formErrors.email && (
+                    <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
+                      <AlertCircle size={12} />
+                      {formErrors.email}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-xs text-slate-500 mb-1">
+                    &gt; Subject:
+                  </label>
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {SUBJECT_PRESETS.map((preset) => {
+                      const isActive = formData.subject === preset.label;
+                      return (
+                        <button
+                          type="button"
+                          key={preset.label}
+                          onClick={() =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              subject: isActive ? "" : preset.label,
+                            }))
+                          }
+                          className={`px-2.5 py-1 rounded text-xs border transition-all ${
+                            isActive
+                              ? "border-green-500 text-green-300 bg-green-500/10"
+                              : "border-slate-700/60 text-slate-400 hover:border-slate-500"
+                          }`}
+                        >
+                          {preset.emoji} {preset.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <input
+                    type="text"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    placeholder="Select a preset above or type a subject..."
+                    className="w-full px-3 py-2 bg-black/60 border border-slate-700/60 rounded text-green-300 text-sm placeholder-slate-600 focus:outline-none focus:border-green-400"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs text-slate-500 mb-1">
+                    &gt; Message:
+                  </label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Write your message here..."
+                    rows="5"
+                    className={`w-full px-3 py-2 bg-black/60 border rounded text-green-300 text-sm placeholder-slate-600 focus:outline-none resize-none ${
+                      formErrors.message
+                        ? "border-red-500"
+                        : "border-slate-700/60 focus:border-green-400"
+                    }`}
+                  ></textarea>
+                  <div className="flex items-center justify-between mt-1">
+                    {formErrors.message ? (
+                      <p className="text-xs text-red-400 flex items-center gap-1">
+                        <AlertCircle size={12} />
+                        {formErrors.message}
+                      </p>
+                    ) : (
+                      <span className="text-[11px] text-slate-600">
+                        chars: {formData.message.trim().length} · words:{" "}
+                        {formData.message.trim()
+                          ? formData.message.trim().split(/\s+/).length
+                          : 0}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <button
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                  className="w-full py-3 border border-orange-400/50 bg-orange-400/10 hover:bg-orange-400/20 text-orange-400 rounded font-semibold transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? "sending..." : "$ send --message ↵"}
+                </button>
+
+                <p className="flex items-center gap-1.5 text-[11px] text-slate-600 pt-1">
+                  🔒 TLS 1.3 · sent via a secure relay, never stored on this
+                  site
+                </p>
+              </div>
             </div>
 
-            <div className="p-5 sm:p-6 space-y-4">
-              <div>
-                <label className="block text-xs text-slate-500 mb-1">
-                  &gt; From (your name):
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="John Doe"
-                  className={`w-full px-3 py-2 bg-black/60 border rounded text-green-300 text-sm placeholder-slate-600 focus:outline-none ${
-                    formErrors.name
-                      ? "border-red-500"
-                      : "border-slate-700/60 focus:border-green-400"
-                  }`}
-                />
-                {formErrors.name && (
-                  <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
-                    <AlertCircle size={12} />
-                    {formErrors.name}
-                  </p>
-                )}
+            {/* SIDE PANEL */}
+            <div className="lg:col-span-2 rounded-lg border border-slate-700/50 bg-[#0d1117]/90 p-5 sm:p-6 flex flex-col gap-6">
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-orange-400 font-semibold tracking-wide">
+                  STATUS
+                </span>
+                <span className="flex items-center gap-1.5 text-xs text-green-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                  OPEN TO WORK
+                </span>
+              </div>
+
+              <div className="border-l-2 border-orange-400/40 pl-3">
+                <p className="text-slate-300 text-sm italic leading-relaxed">
+                  "Ship small, ship often — the best way to learn a stack is to
+                  build something real on it."
+                </p>
+                <p className="text-slate-600 text-xs mt-2">— biplob.log</p>
               </div>
 
               <div>
-                <label className="block text-xs text-slate-500 mb-1">
-                  &gt; Reply-to (your email):
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="you@example.com"
-                  className={`w-full px-3 py-2 bg-black/60 border rounded text-green-300 text-sm placeholder-slate-600 focus:outline-none ${
-                    formErrors.email
-                      ? "border-red-500"
-                      : "border-slate-700/60 focus:border-green-400"
-                  }`}
-                />
-                {formErrors.email && (
-                  <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
-                    <AlertCircle size={12} />
-                    {formErrors.email}
-                  </p>
-                )}
+                <p className="text-xs text-slate-500 mb-2">
+                  Prefer a quick link over the form?
+                </p>
+                <div className="space-y-2">
+                  <a
+                    href="https://github.com/kaflebiplob/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-slate-400 hover:text-green-400 transition-colors"
+                  >
+                    <span className="text-green-500">$</span> open
+                    github.com/kaflebiplob ↗
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/biplob-kafle-56b16925a/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-slate-400 hover:text-green-400 transition-colors"
+                  >
+                    <span className="text-green-500">$</span> open
+                    linkedin.com/in/biplob-kafle ↗
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setCliOpen(true)}
+                    className="flex items-center gap-2 text-sm text-slate-400 hover:text-green-400 transition-colors"
+                  >
+                    <span className="text-green-500">$</span> open CLI → send
+                    --message
+                  </button>
+                </div>
               </div>
 
-              <div>
-                <label className="block text-xs text-slate-500 mb-1">
-                  &gt; Message:
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Type your message..."
-                  rows="5"
-                  className={`w-full px-3 py-2 bg-black/60 border rounded text-green-300 text-sm placeholder-slate-600 focus:outline-none resize-none ${
-                    formErrors.message
-                      ? "border-red-500"
-                      : "border-slate-700/60 focus:border-green-400"
-                  }`}
-                ></textarea>
-                {formErrors.message && (
-                  <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
-                    <AlertCircle size={12} />
-                    {formErrors.message}
-                  </p>
-                )}
+              <div className="mt-auto pt-3 border-t border-slate-700/50 flex items-center justify-between text-[11px] text-slate-600">
+                <span>Kathmandu, NP · UTC+5:45</span>
+                <span>uptime: {uptime}</span>
               </div>
-
-              <button
-                onClick={handleSubmit}
-                disabled={isSubmitting}
-                className="w-full py-3 border border-orange-400/50 bg-orange-400/10 hover:bg-orange-400/20 text-orange-400 rounded font-semibold transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? "sending..." : "$ send --message ↵"}
-              </button>
             </div>
-          </div>
-
-          <div className="flex justify-center gap-6 mt-8 text-sm">
-            <a
-              href="https://github.com/kaflebiplob/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-400 hover:text-green-400 transition-colors"
-            >
-              $ open github.com/kaflebiplob ↗
-            </a>
           </div>
         </div>
       </section>
