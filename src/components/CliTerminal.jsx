@@ -56,16 +56,17 @@ export default function CliTerminal({ open, onClose, onNavigate }) {
           "Biplob Kafle — Full-Stack Developer\nBuilding scalable web apps with Python, PHP & React.";
         break;
       case "skills":
-        out = "JavaScript, Python/Django, FastAPI, PHP/Laravel, React, REST APIs, MySQL/PostgreSQL, AWS";
-        onNavigate?.("skills");
+        out =
+          "JavaScript, Python/Django, FastAPI, PHP/Laravel, React, REST APIs, MySQL/PostgreSQL, AWS";
+        setTimeout(() => onNavigate?.("skills"), 900);
         break;
       case "projects":
         out = "Loading project list above ↑ (scroll to git-log section)";
-        onNavigate?.("projects");
+        setTimeout(() => onNavigate?.("projects"), 900);
         break;
       case "contact":
         out = "Opening contact form...";
-        onNavigate?.("contact");
+        setTimeout(() => onNavigate?.("contact"), 900);
         break;
       case "neofetch":
         out = [
@@ -118,7 +119,14 @@ export default function CliTerminal({ open, onClose, onNavigate }) {
           onClick={() => inputRef.current?.focus()}
         >
           {lines.map((line, i) => (
-            <div key={i} className={line.startsWith("biplob@dev") ? "text-green-300" : "text-green-500/90"}>
+            <div
+              key={i}
+              className={
+                line.startsWith("biplob@dev")
+                  ? "text-green-300"
+                  : "text-green-500/90"
+              }
+            >
               {line}
             </div>
           ))}

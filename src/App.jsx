@@ -259,7 +259,7 @@ export default function App() {
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
-        message: formData.message,
+        message: formData.message.trim(),
         subject:
           formData.subject || `New Portfolio Message from ${formData.name}`,
         name: formData.name,
