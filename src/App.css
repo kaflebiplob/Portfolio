@@ -1,1 +1,69 @@
 @import "tailwindcss";
+
+:root {
+  --term-bg: #05070a;
+  --term-panel: #0a0f0d;
+  --term-green: #22c55e;
+  --term-green-dim: #16a34a;
+  --term-amber: #f59e0b;
+  --term-border: rgba(34, 197, 94, 0.25);
+}
+
+body {
+  background-color: var(--term-bg);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+.font-mono-term {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* scanline overlay for CRT feel */
+.crt-scanlines::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.15) 3px
+  );
+  opacity: 0.35;
+}
+
+.terminal-cursor::after {
+  content: "_";
+  animation: blink 1s steps(1) infinite;
+  color: var(--term-green);
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.text-glow {
+  text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+.border-glow {
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.08);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #05070a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 197, 94, 0.3);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 197, 94, 0.5);
+}
