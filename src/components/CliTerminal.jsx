@@ -79,7 +79,7 @@ export default function CliTerminal({ open, onClose, onNavigate }) {
         ].join("\n");
         break;
       case "sudo hire":
-        out = "Permission granted. ✅ Scroll to contact and send a message!";
+        out = "Permission granted.  Scroll to contact and send a message!";
         onNavigate?.("contact");
         break;
       default:
