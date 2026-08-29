@@ -31,7 +31,8 @@ const SUBJECT_PRESETS = [
   { emoji: "💬", label: "General Inquiry" },
 ];
 
-
+// Terminal-flavored route hashes — mirrors the nav labels/CLI commands
+// instead of plain section ids like "#hero" or "#contact".
 const SECTION_HASHES = {
   home: "whoami",
   skills: "skills--la",
@@ -41,6 +42,15 @@ const SECTION_HASHES = {
 const HASH_TO_SECTION = Object.fromEntries(
   Object.entries(SECTION_HASHES).map(([key, hash]) => [hash, key]),
 );
+
+// Rotating role tagline shown in the hero — cycles through the roles
+// Biplob is building toward, per his CV research interests.
+const HERO_ROLES = [
+  "Full-Stack Developer",
+  "Data Science Enthusiast",
+  "Aspiring AI/ML Researcher",
+  "Software Engineer",
+];
 
 export default function App() {
   const [active, setActive] = useState("home");
@@ -60,6 +70,9 @@ export default function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const [uptime, setUptime] = useState("");
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [roleText, setRoleText] = useState("");
+  const [roleDeleting, setRoleDeleting] = useState(false);
 
   const homeRef = useRef(null);
   const projectsRef = useRef(null);
@@ -82,6 +95,34 @@ export default function App() {
     const id = setInterval(tick, 30000);
     return () => clearInterval(id);
   }, []);
+
+  // Typewriter effect for the rotating role tagline in the hero.
+  useEffect(() => {
+    const current = HERO_ROLES[roleIndex];
+    const typingSpeed = roleDeleting ? 35 : 85;
+    const pauseTime = 1400;
+
+    if (!roleDeleting && roleText === current) {
+      const pause = setTimeout(() => setRoleDeleting(true), pauseTime);
+      return () => clearTimeout(pause);
+    }
+
+    if (roleDeleting && roleText === "") {
+      setRoleDeleting(false);
+      setRoleIndex((prev) => (prev + 1) % HERO_ROLES.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setRoleText((prev) =>
+        roleDeleting
+          ? current.slice(0, prev.length - 1)
+          : current.slice(0, prev.length + 1),
+      );
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [roleText, roleDeleting, roleIndex]);
 
   const sections = {
     home: homeRef,
@@ -245,85 +286,81 @@ export default function App() {
 
   const projects = [
     {
-      title: "Python/React E-commerce including API",
-      desc: "API-driven backend using Django REST Framework with React frontend and Redux state management. Custom admin panel for product, order, and user management.",
-      tech: ["React", "Django REST", "PostgreSQL"],
-      link: "https://ecommercepy.vercel.app/",
-      path: "~/live/ecommercepy",
+      title: "Medici — Enterprise SaaS Integrated Webapp",
+      desc: "Large-scale company web application built independently for a Japanese client, unifying Zoom, Slack, Notion, Vimeo, and Stripe into one system, plus a YouTube-style video streaming module built from scratch for educational content delivery.",
+      tech: ["Redis", "ngrok", "Third-Party APIs"],
+      link: null,
+      path: "~/private/medici",
     },
     {
-      title: "Travel & Hospital Embed Booking System",
-      desc: "Created embeddable booking widgets with REST APIs and payment integration. Admin panel for managing bookings, hospitals, and payment workflows.",
-      tech: ["Laravel", "REST API", "MySQL"],
-      link: "https://github.com/kaflebiplob/travel_hospital_embed",
-      path: "~/repo/travel_hospital_embed",
+      title: "Everest — Sports Management & Tracking Web App",
+      desc: "Cloud-based sports management platform for a US-based client, with performance monitoring and activity tracking. FastAPI backend, React frontend, deployed on AWS EC2 with S3 storage.",
+      tech: ["FastAPI", "React", "AWS EC2", "S3"],
+      link: null,
+      path: "~/private/everest",
     },
     {
       title: "Bus Ticketing System",
-      desc: "Implemented real-time seat availability tracking and secure booking system with payment integration.",
+      desc: "Real-time seat reservation system with a focus on availability management, transactional consistency, and secure booking workflows.",
       tech: ["Laravel", "MySQL", "JavaScript"],
       link: "https://github.com/kaflebiplob/busticketingsystem",
       path: "~/repo/busticketingsystem",
-    },
-    {
-      title: "ABI E-commerce Platform",
-      desc: "Product management system with categorization, ordering, and admin tools featuring clean, scalable architecture.",
-      tech: ["Laravel 11", "Bootstrap", "MySQL"],
-      link: "https://github.com/kaflebiplob/ABI",
-      path: "~/repo/ABI",
     },
   ];
 
   const skillGroups = [
     {
-      dir: "Languages_&_Frontend/",
-      items: ["javascript", "react", "html5", "css3", "tailwindcss"],
+      dir: "Languages/",
+      items: ["python", "javascript", "php"],
     },
     {
-      dir: "Backend/",
-      items: ["python", "django", "fastapi", "php", "laravel", "rest-apis"],
+      dir: "Frameworks/",
+      items: [
+        "django",
+        "fastapi",
+        "laravel",
+        "reactjs",
+        "tailwindcss",
+        "jquery",
+      ],
     },
     {
       dir: "Databases/",
-      items: ["mysql", "postgresql"],
+      items: ["postgresql", "mysql"],
     },
     {
-      dir: "Cloud_&_Tools/",
-      items: ["aws", "git", "github", "ngrok", "webhooks", "redis"],
+      dir: "Cloud_&_Deployment/",
+      items: ["aws-ec2", "s3", "docker"],
+    },
+    {
+      dir: "Tools_&_Practices/",
+      items: ["git", "postman", "jupyter-notebook", "ngrok", "redis"],
     },
   ];
 
   const experience = [
     {
-      title: "Junior Full Stack Developer",
-      company: "Smart Solar Corporation",
+      title: "Junior Full-Stack Developer",
+      company: "Jodnu Technology",
       period: "Dec 2025 - Present",
       description:
-        "Working on Japanese webapps and related software solutions including ngrok, webhooks, redis as well as REST APIs. Involved in full software development lifecycle from design to deployment.",
+        "Working as a full-stack developer on a Japanese-based project, developing and integrating scalable backend APIs and frontend features. Building and maintaining end-to-end web application functionality using Django/FastAPI and React.",
       hash: "c4d90ef",
     },
     {
       title: "Junior Developer",
       company: "Afore Solutions",
-      period: "Jun 2025 - Jan 2026",
+      period: "May 2025 - Dec 2025",
       description:
-        "Developed and integrated scalable REST APIs for production. Performed backend optimization, debugging, and comprehensive QA testing.",
+        "Backend API development and integration for JDM UK projects. Conducted API integration and functional testing using Postman, plus backend optimization, debugging, and QA testing to ensure system stability.",
       hash: "a3f8c2d",
-    },
-    {
-      title: "Junior Laravel Developer (Contract Based)",
-      company: "Mirrai Tech",
-      period: "May 2025 - Jun 2025",
-      description:
-        "Built and maintained Laravel-based applications and admin dashboards. Improved application performance and ensured cross-browser compatibility.",
-      hash: "f5a43b1",
     },
     {
       title: "Intern",
       company: "SoftNEP Pvt. Ltd.",
       period: "Jan 2025 - May 2025",
       description:
-        "Gained hands-on experience with full-stack development in production environment. Worked with professional MVC architecture and modern workflows.",
+        "Gained hands-on experience with full-stack development in a production environment. Worked with professional MVC architecture and modern development workflows.",
       hash: "d910fe3",
     },
   ];
@@ -490,11 +527,18 @@ export default function App() {
 
               {bootDone && (
                 <div className="animate-in fade-in duration-500 mt-8">
+                  <p className="text-orange-400 text-sm sm:text-base font-semibold mb-4 flex items-center gap-1.5">
+                    <span className="text-green-600">$</span> whoami --role
+                    <span className="ml-1">{roleText}</span>
+                    <span className="terminal-cursor"></span>
+                  </p>
+
                   <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8 border-l-2 border-green-500/30 pl-4">
-                    Full-stack developer with expertise in Python and PHP,
-                    building scalable web applications and REST APIs. I focus on
-                    writing clean code, improving performance, and following
-                    industry-standard workflows.
+                    Computer Science graduate with professional experience in
+                    backend systems, scalable APIs, and cloud-based applications
+                    — now pursuing graduate study in Artificial Intelligence to
+                    build toward machine learning, intelligent systems, and
+                    AI-driven software.
                   </p>
 
                   <div className="flex flex-wrap gap-3 mb-6">
@@ -638,38 +682,52 @@ export default function App() {
           </h2>
 
           <div className="space-y-6">
-            {projects.map((p, i) => (
-              <a
-                key={i}
-                href={p.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block rounded-lg border border-slate-700/50 bg-[#0d1117]/90 p-5 sm:p-6 hover:border-green-500/50 hover:bg-[#0d1117] transition-all"
-              >
-                <p className="text-green-500 text-xs">
-                  ● commit {(9000 + i * 137).toString(16)}
-                </p>
-                <h3 className="text-green-300 font-bold text-lg sm:text-xl mt-1 group-hover:text-glow">
-                  {i + 1}. {p.title}
-                </h3>
-                <p className="text-slate-400 text-sm sm:text-base mt-2 leading-relaxed">
-                  {p.desc}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {p.tech.map((t, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2 py-1 rounded text-xs border border-slate-700/60 text-slate-300"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <p className="mt-3 text-orange-400 text-sm font-semibold inline-flex items-center gap-1.5">
-                  <span className="text-green-500">$</span> cd {p.path} ↗
-                </p>
-              </a>
-            ))}
+            {projects.map((p, i) => {
+              const Wrapper = p.link ? "a" : "div";
+              const wrapperProps = p.link
+                ? { href: p.link, target: "_blank", rel: "noopener noreferrer" }
+                : {};
+              return (
+                <Wrapper
+                  key={i}
+                  {...wrapperProps}
+                  className={`group block rounded-lg border border-slate-700/50 bg-[#0d1117]/90 p-5 sm:p-6 transition-all ${
+                    p.link
+                      ? "hover:border-green-500/50 hover:bg-[#0d1117]"
+                      : "cursor-default"
+                  }`}
+                >
+                  <p className="text-green-500 text-xs">
+                    ● commit {(9000 + i * 137).toString(16)}
+                  </p>
+                  <h3 className="text-green-300 font-bold text-lg sm:text-xl mt-1 group-hover:text-glow">
+                    {i + 1}. {p.title}
+                  </h3>
+                  <p className="text-slate-400 text-sm sm:text-base mt-2 leading-relaxed">
+                    {p.desc}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {p.tech.map((t, idx) => (
+                      <span
+                        key={idx}
+                        className="px-2 py-1 rounded text-xs border border-slate-700/60 text-slate-300"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  {p.link ? (
+                    <p className="mt-3 text-orange-400 text-sm font-semibold inline-flex items-center gap-1.5">
+                      <span className="text-green-500">$</span> cd {p.path} ↗
+                    </p>
+                  ) : (
+                    <p className="mt-3 text-slate-500 text-sm font-semibold inline-flex items-center gap-1.5">
+                      🔒 private client project — {p.path}
+                    </p>
+                  )}
+                </Wrapper>
+              );
+            })}
           </div>
         </div>
       </section>
