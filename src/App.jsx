@@ -31,6 +31,17 @@ const SUBJECT_PRESETS = [
   { emoji: "💬", label: "General Inquiry" },
 ];
 
+
+const SECTION_HASHES = {
+  home: "whoami",
+  skills: "skills--la",
+  projects: "git-log",
+  contact: "send--message",
+};
+const HASH_TO_SECTION = Object.fromEntries(
+  Object.entries(SECTION_HASHES).map(([key, hash]) => [hash, key]),
+);
+
 export default function App() {
   const [active, setActive] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -86,7 +97,53 @@ export default function App() {
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+    const hash = SECTION_HASHES[name];
+    if (hash && window.location.hash.slice(1) !== hash) {
+      window.history.pushState(null, "", `#${hash}`);
+    }
   };
+
+  // Jump straight to a section if the page was loaded with one of our
+  // terminal-style hashes in the URL (e.g. #send--message).
+  useEffect(() => {
+    const initialHash = window.location.hash.slice(1);
+    const target = HASH_TO_SECTION[initialHash];
+    if (target) {
+      requestAnimationFrame(() => {
+        setTimeout(() => scrollTo(target), 150);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Keep the URL hash in sync with whichever section is on screen while
+  // the person free-scrolls, without spamming browser history.
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const key = Object.keys(sections).find(
+            (k) => sections[k].current === entry.target,
+          );
+          if (!key) return;
+          setActive(key);
+          const hash = SECTION_HASHES[key];
+          if (hash && window.location.hash.slice(1) !== hash) {
+            window.history.replaceState(null, "", `#${hash}`);
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    Object.values(sections).forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const showToast = (message, type = "success") => {
     setToast({ message, type });
@@ -192,24 +249,28 @@ export default function App() {
       desc: "API-driven backend using Django REST Framework with React frontend and Redux state management. Custom admin panel for product, order, and user management.",
       tech: ["React", "Django REST", "PostgreSQL"],
       link: "https://ecommercepy.vercel.app/",
+      path: "~/live/ecommercepy",
     },
     {
       title: "Travel & Hospital Embed Booking System",
       desc: "Created embeddable booking widgets with REST APIs and payment integration. Admin panel for managing bookings, hospitals, and payment workflows.",
       tech: ["Laravel", "REST API", "MySQL"],
       link: "https://github.com/kaflebiplob/travel_hospital_embed",
+      path: "~/repo/travel_hospital_embed",
     },
     {
       title: "Bus Ticketing System",
       desc: "Implemented real-time seat availability tracking and secure booking system with payment integration.",
       tech: ["Laravel", "MySQL", "JavaScript"],
       link: "https://github.com/kaflebiplob/busticketingsystem",
+      path: "~/repo/busticketingsystem",
     },
     {
       title: "ABI E-commerce Platform",
       desc: "Product management system with categorization, ordering, and admin tools featuring clean, scalable architecture.",
       tech: ["Laravel 11", "Bootstrap", "MySQL"],
       link: "https://github.com/kaflebiplob/ABI",
+      path: "~/repo/ABI",
     },
   ];
 
@@ -353,9 +414,10 @@ export default function App() {
               href={CV}
               target="_blank"
               rel="noopener noreferrer"
+              title="~/resume.pdf"
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded border border-green-500 text-green-400 text-sm font-semibold hover:bg-green-500/10 transition-all"
             >
-              📄 RESUME.pdf ↓
+              <span className="text-green-600">$</span> cat ~/resume.pdf ↓
             </a>
           </div>
 
@@ -395,7 +457,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="text-left py-2 px-3 rounded border border-green-500/40 text-green-400"
               >
-                📄 RESUME.pdf ↓
+                <span className="text-green-600">$</span> cat ~/resume.pdf ↓
               </a>
             </div>
           </div>
@@ -455,25 +517,43 @@ export default function App() {
                       href="https://github.com/kaflebiplob/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 border border-slate-700/60 rounded text-slate-300 hover:text-green-400 hover:border-green-500/50 transition-all"
+                      title="~/github/kaflebiplob"
+                      className="group/social flex flex-col items-center gap-1"
                     >
-                      <Github size={20} />
+                      <span className="p-3 border border-slate-700/60 rounded text-slate-300 group-hover/social:text-green-400 group-hover/social:border-green-500/50 transition-all">
+                        <Github size={20} />
+                      </span>
+                      <span className="text-[10px] text-slate-600 group-hover/social:text-green-500 hidden sm:inline transition-colors">
+                        ~/github
+                      </span>
                     </a>
                     <a
                       href="https://www.linkedin.com/in/biplob-kafle-56b16925a/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 border border-slate-700/60 rounded text-slate-300 hover:text-green-400 hover:border-green-500/50 transition-all"
+                      title="~/linkedin/biplob-kafle"
+                      className="group/social flex flex-col items-center gap-1"
                     >
-                      <Linkedin size={20} />
+                      <span className="p-3 border border-slate-700/60 rounded text-slate-300 group-hover/social:text-green-400 group-hover/social:border-green-500/50 transition-all">
+                        <Linkedin size={20} />
+                      </span>
+                      <span className="text-[10px] text-slate-600 group-hover/social:text-green-500 hidden sm:inline transition-colors">
+                        ~/linkedin
+                      </span>
                     </a>
                     <a
                       href="https://www.facebook.com/biplop.kafle"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 border border-slate-700/60 rounded text-slate-300 hover:text-green-400 hover:border-green-500/50 transition-all"
+                      title="~/facebook/biplop.kafle"
+                      className="group/social flex flex-col items-center gap-1"
                     >
-                      <Facebook size={20} />
+                      <span className="p-3 border border-slate-700/60 rounded text-slate-300 group-hover/social:text-green-400 group-hover/social:border-green-500/50 transition-all">
+                        <Facebook size={20} />
+                      </span>
+                      <span className="text-[10px] text-slate-600 group-hover/social:text-green-500 hidden sm:inline transition-colors">
+                        ~/facebook
+                      </span>
                     </a>
                   </div>
                 </div>
@@ -585,8 +665,8 @@ export default function App() {
                     </span>
                   ))}
                 </div>
-                <p className="mt-3 text-orange-400 text-sm font-semibold inline-flex items-center gap-1">
-                  View Repo ↗
+                <p className="mt-3 text-orange-400 text-sm font-semibold inline-flex items-center gap-1.5">
+                  <span className="text-green-500">$</span> cd {p.path} ↗
                 </p>
               </a>
             ))}
@@ -813,8 +893,8 @@ export default function App() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm text-slate-400 hover:text-green-400 transition-colors"
                   >
-                    <span className="text-green-500">$</span> open
-                    github.com/kaflebiplob ↗
+                    <span className="text-green-500">root@repo:~$</span> cd
+                    ~/github/kaflebiplob ↗
                   </a>
                   <a
                     href="https://www.linkedin.com/in/biplob-kafle-56b16925a/"
@@ -822,15 +902,15 @@ export default function App() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm text-slate-400 hover:text-green-400 transition-colors"
                   >
-                    <span className="text-green-500">$</span> open
-                    linkedin.com/in/biplob-kafle ↗
+                    <span className="text-green-500">root@repo:~$</span> cd
+                    ~/linkedin/biplob-kafle ↗
                   </a>
                   <button
                     type="button"
                     onClick={() => setCliOpen(true)}
                     className="flex items-center gap-2 text-sm text-slate-400 hover:text-green-400 transition-colors"
                   >
-                    <span className="text-green-500">$</span> open CLI → send
+                    <span className="text-green-500">root@dev:~$</span> ./send
                     --message
                   </button>
                 </div>
@@ -846,12 +926,13 @@ export default function App() {
       </section>
 
       <footer className="relative z-10 py-10 text-center border-t border-slate-700/50 text-slate-500 text-xs sm:text-sm">
-        <div className="flex justify-center gap-4 mb-5">
+        <div className="flex justify-center gap-4 mb-3">
           <a
             href="https://github.com/kaflebiplob/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
+            title="~/github/kaflebiplob"
             className="p-3 border border-slate-700/60 rounded text-slate-300 hover:text-green-400 hover:border-green-500/50 transition-all"
           >
             <Github size={18} />
@@ -861,6 +942,7 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
+            title="~/linkedin/biplob-kafle"
             className="p-3 border border-slate-700/60 rounded text-slate-300 hover:text-green-400 hover:border-green-500/50 transition-all"
           >
             <Linkedin size={18} />
@@ -870,11 +952,16 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
+            title="~/facebook/biplop.kafle"
             className="p-3 border border-slate-700/60 rounded text-slate-300 hover:text-green-400 hover:border-green-500/50 transition-all"
           >
             <Facebook size={18} />
           </a>
         </div>
+        <p className="text-[11px] text-slate-700 font-mono-term mb-3">
+          root@biplob:~$ whoami{" "}
+          <span className="text-green-600">→ full-stack dev</span>
+        </p>
         <p>
           © 2023-2026 Biplob Kafle. Not a person, a process — always building.
         </p>
