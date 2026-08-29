@@ -15,7 +15,6 @@ const BOOT_LINES = [
     value: "Building scalable web apps that ship",
     type: "accent",
   },
-  { label: "GitHub streak: ", value: "counting commits...", type: "highlight" },
 ];
 
 export default function BootIntro({ onDone }) {

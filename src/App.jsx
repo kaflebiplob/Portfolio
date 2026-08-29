@@ -458,7 +458,7 @@ export default function App() {
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="rounded-lg border border-green-500/30 bg-black/60 p-5 sm:p-6">
+            <div className="rounded-lg border border-slate-700/50 bg-[#0d1117]/90 p-5 sm:p-6">
               <h3 className="text-green-400 font-bold mb-4 text-sm sm:text-base">
                 📁 drwxr-xr-x skills/
               </h3>
@@ -468,7 +468,7 @@ export default function App() {
                     <p className="text-green-300 text-sm font-semibold mb-1">
                       ├── 📁 {g.dir}
                     </p>
-                    <p className="text-green-600 text-xs sm:text-sm pl-6 leading-relaxed">
+                    <p className="text-slate-400 text-xs sm:text-sm pl-6 leading-relaxed">
                       {g.items.join("  ")}
                     </p>
                   </div>
@@ -476,7 +476,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-green-500/30 bg-black/60 p-5 sm:p-6">
+            <div className="rounded-lg border border-slate-700/50 bg-[#0d1117]/90 p-5 sm:p-6">
               <h3 className="text-green-400 font-bold mb-4 text-sm sm:text-base">
                 $ git log --oneline --author=experience
               </h3>
@@ -484,7 +484,7 @@ export default function App() {
                 {experience.map((exp, idx) => (
                   <div
                     key={idx}
-                    className="border-l-2 border-green-500/30 pl-4"
+                    className="border-l-2 border-slate-700/50 pl-4"
                   >
                     <p className="text-green-500 text-xs">
                       ● commit {exp.hash}
@@ -492,10 +492,10 @@ export default function App() {
                     <p className="text-green-300 font-semibold text-sm sm:text-base mt-1">
                       {exp.title}
                     </p>
-                    <p className="text-green-600 text-xs sm:text-sm">
+                    <p className="text-slate-500 text-xs sm:text-sm">
                       {exp.company} · {exp.period}
                     </p>
-                    <p className="text-green-600/90 text-xs sm:text-sm mt-1 leading-relaxed">
+                    <p className="text-slate-400 text-xs sm:text-sm mt-1 leading-relaxed">
                       {exp.description}
                     </p>
                   </div>
@@ -524,7 +524,7 @@ export default function App() {
                 href={p.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block rounded-lg border border-green-500/30 bg-black/60 p-5 sm:p-6 hover:border-green-400/60 hover:bg-green-500/5 transition-all"
+                className="group block rounded-lg border border-slate-700/50 bg-[#0d1117]/90 p-5 sm:p-6 hover:border-green-500/50 hover:bg-[#0d1117] transition-all"
               >
                 <p className="text-green-500 text-xs">
                   ● commit {(9000 + i * 137).toString(16)}
@@ -532,20 +532,20 @@ export default function App() {
                 <h3 className="text-green-300 font-bold text-lg sm:text-xl mt-1 group-hover:text-glow">
                   {i + 1}. {p.title}
                 </h3>
-                <p className="text-green-600/90 text-sm sm:text-base mt-2 leading-relaxed">
+                <p className="text-slate-400 text-sm sm:text-base mt-2 leading-relaxed">
                   {p.desc}
                 </p>
                 <div className="flex flex-wrap gap-2 mt-3">
                   {p.tech.map((t, idx) => (
                     <span
                       key={idx}
-                      className="px-2 py-1 rounded text-xs border border-green-500/30 text-green-400"
+                      className="px-2 py-1 rounded text-xs border border-slate-700/60 text-slate-300"
                     >
                       {t}
                     </span>
                   ))}
                 </div>
-                <p className="mt-3 text-green-400 text-sm font-semibold inline-flex items-center gap-1">
+                <p className="mt-3 text-orange-400 text-sm font-semibold inline-flex items-center gap-1">
                   View Repo ↗
                 </p>
               </a>
@@ -567,20 +567,18 @@ export default function App() {
           <h2 className="text-2xl sm:text-3xl font-bold text-green-300 text-glow mb-2">
             # Let's Work Together
           </h2>
-          <p className="text-green-600 text-sm mb-8">
+          <p className="text-slate-400 text-sm mb-8">
             Have a project in mind? Drop a message below.
           </p>
 
-          <div className="rounded-lg border border-green-500/30 bg-black/60 overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-2 bg-green-950/30 border-b border-green-500/20">
-              <span className="text-xs text-green-500/70">
-                compose-message.sh
-              </span>
+          <div className="rounded-lg border border-slate-700/50 bg-[#0d1117]/90 overflow-hidden">
+            <div className="flex items-center gap-2 px-4 py-2 bg-black/40 border-b border-slate-700/50">
+              <span className="text-xs text-slate-500">compose-message.sh</span>
             </div>
 
             <div className="p-5 sm:p-6 space-y-4">
               <div>
-                <label className="block text-xs text-green-600 mb-1">
+                <label className="block text-xs text-slate-500 mb-1">
                   &gt; From (your name):
                 </label>
                 <input
@@ -589,10 +587,10 @@ export default function App() {
                   value={formData.name}
                   onChange={handleInputChange}
                   placeholder="John Doe"
-                  className={`w-full px-3 py-2 bg-black border rounded text-green-300 text-sm placeholder-green-800 focus:outline-none ${
+                  className={`w-full px-3 py-2 bg-black/60 border rounded text-green-300 text-sm placeholder-slate-600 focus:outline-none ${
                     formErrors.name
                       ? "border-red-500"
-                      : "border-green-500/30 focus:border-green-400"
+                      : "border-slate-700/60 focus:border-green-400"
                   }`}
                 />
                 {formErrors.name && (
@@ -604,7 +602,7 @@ export default function App() {
               </div>
 
               <div>
-                <label className="block text-xs text-green-600 mb-1">
+                <label className="block text-xs text-slate-500 mb-1">
                   &gt; Reply-to (your email):
                 </label>
                 <input
@@ -613,10 +611,10 @@ export default function App() {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="you@example.com"
-                  className={`w-full px-3 py-2 bg-black border rounded text-green-300 text-sm placeholder-green-800 focus:outline-none ${
+                  className={`w-full px-3 py-2 bg-black/60 border rounded text-green-300 text-sm placeholder-slate-600 focus:outline-none ${
                     formErrors.email
                       ? "border-red-500"
-                      : "border-green-500/30 focus:border-green-400"
+                      : "border-slate-700/60 focus:border-green-400"
                   }`}
                 />
                 {formErrors.email && (
@@ -628,7 +626,7 @@ export default function App() {
               </div>
 
               <div>
-                <label className="block text-xs text-green-600 mb-1">
+                <label className="block text-xs text-slate-500 mb-1">
                   &gt; Message:
                 </label>
                 <textarea
@@ -637,10 +635,10 @@ export default function App() {
                   onChange={handleInputChange}
                   placeholder="Type your message..."
                   rows="5"
-                  className={`w-full px-3 py-2 bg-black border rounded text-green-300 text-sm placeholder-green-800 focus:outline-none resize-none ${
+                  className={`w-full px-3 py-2 bg-black/60 border rounded text-green-300 text-sm placeholder-slate-600 focus:outline-none resize-none ${
                     formErrors.message
                       ? "border-red-500"
-                      : "border-green-500/30 focus:border-green-400"
+                      : "border-slate-700/60 focus:border-green-400"
                   }`}
                 ></textarea>
                 {formErrors.message && (
@@ -654,7 +652,7 @@ export default function App() {
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="w-full py-3 border border-green-500 bg-green-500/10 hover:bg-green-500/20 text-green-300 rounded font-semibold transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 border border-orange-400/50 bg-orange-400/10 hover:bg-orange-400/20 text-orange-400 rounded font-semibold transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? "sending..." : "$ send --message ↵"}
               </button>
@@ -666,7 +664,7 @@ export default function App() {
               href="https://github.com/kaflebiplob/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-500 hover:text-green-300 transition-colors"
+              className="text-slate-400 hover:text-green-400 transition-colors"
             >
               $ open github.com/kaflebiplob ↗
             </a>
@@ -674,14 +672,14 @@ export default function App() {
         </div>
       </section>
 
-      <footer className="relative z-10 py-10 text-center border-t border-green-500/20 text-green-700 text-xs sm:text-sm">
+      <footer className="relative z-10 py-10 text-center border-t border-slate-700/50 text-slate-500 text-xs sm:text-sm">
         <div className="flex justify-center gap-4 mb-5">
           <a
             href="https://github.com/kaflebiplob/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="p-3 border border-green-500/30 rounded text-green-500 hover:text-green-300 hover:border-green-400/60 hover:bg-green-500/10 transition-all"
+            className="p-3 border border-slate-700/60 rounded text-slate-300 hover:text-green-400 hover:border-green-500/50 transition-all"
           >
             <Github size={18} />
           </a>
@@ -690,7 +688,7 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="p-3 border border-green-500/30 rounded text-green-500 hover:text-green-300 hover:border-green-400/60 hover:bg-green-500/10 transition-all"
+            className="p-3 border border-slate-700/60 rounded text-slate-300 hover:text-green-400 hover:border-green-500/50 transition-all"
           >
             <Linkedin size={18} />
           </a>
@@ -699,7 +697,7 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
-            className="p-3 border border-green-500/30 rounded text-green-500 hover:text-green-300 hover:border-green-400/60 hover:bg-green-500/10 transition-all"
+            className="p-3 border border-slate-700/60 rounded text-slate-300 hover:text-green-400 hover:border-green-500/50 transition-all"
           >
             <Facebook size={18} />
           </a>
