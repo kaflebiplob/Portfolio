@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-
 const BOOT_LINES = [
   { label: "Initializing system...", type: "plain" },
   { label: "Loading profile: ", value: "Biplob Kafle...", type: "highlight" },
   { label: "Location: ", value: "Kathmandu, Nepal", type: "plain-value" },
   {
     label: "Status: ",
-    value: "Full-Stack Developer @ Jodnu Technology",
+    value: "Full-Stack Software Engineer @ Jodnu Technology",
     type: "highlight",
   },
   {
     label: "Mission: ",
-    value: "Building scalable web apps that ship",
+    value:
+      "Building scalable software, exploring Machine Learning, Deep Learning & Data Mining",
     type: "accent",
   },
 ];
@@ -82,11 +82,14 @@ export default function BootIntro({ onDone }) {
 
       {showTitle && (
         <div className="mt-8 animate-in fade-in duration-500">
-          <h1 className="glitch-title text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-cyan-400">
+          <h1 className="glitch-title text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-cyan-600">
             BIPLOB KAFLE
           </h1>
           <p className="mt-3 text-xl sm:text-2xl text-orange-400 font-semibold">
-            &gt; <span className="terminal-cursor-orange">Full-Stack Dev</span>
+            &gt;{" "}
+            <span className="terminal-cursor-orange">
+              Full-Stack Software Engineer
+            </span>
           </p>
         </div>
       )}
