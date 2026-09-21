@@ -53,11 +53,11 @@ export default function CliTerminal({ open, onClose, onNavigate }) {
         break;
       case "whoami":
         out =
-          "Biplob Kafle — Full-Stack Developer\nBuilding scalable web apps with Python, PHP & React.";
+          "Biplob Kafle — Full-Stack Software Engineer\nBuilding scalable web apps with Python, PHP & React, exploring Machine Learning, Deep Learning & Data Mining.";
         break;
       case "skills":
         out =
-          "JavaScript, Python/Django, FastAPI, PHP/Laravel, React, REST APIs, MySQL/PostgreSQL, AWS";
+          "JavaScript, Python, FastAPI, Django, Jupyter Notebook, PHP/Laravel, React, REST APIs, MySQL/PostgreSQL, AWS";
         setTimeout(() => onNavigate?.("skills"), 900);
         break;
       case "projects":
