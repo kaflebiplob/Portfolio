@@ -150,7 +150,6 @@ export default function App() {
         setTimeout(() => scrollTo(target), 150);
       });
     }
-   
   }, []);
 
   // Keep the URL hash in sync with whichever section is on screen
@@ -178,7 +177,6 @@ export default function App() {
     });
 
     return () => observer.disconnect();
-   
   }, []);
 
   const showToast = (message, type = "success") => {
@@ -281,8 +279,29 @@ export default function App() {
 
   const projects = [
     {
+      title: "Sentiment Analysis Model",
+      desc: "Built a sentiment classification model using NLP techniques to categorize text into positive, negative, and neutral sentiment.",
+      tech: ["Python", "Scikit-learn", "NLP"],
+      link: "https://github.com/kaflebiplob/Emotion_analysis",
+      path: "~/ml/sentiment-analysis",
+    },
+    {
+      title: "House Price Prediction",
+      desc: "Developed a regression-based model to predict house prices, applying feature engineering to improve prediction accuracy.",
+      tech: ["Python", "Scikit-learn", "Pandas"],
+      link: "https://github.com/kaflebiplob/House_Price_Prediction",
+      path: "~/ml/house-price-prediction",
+    },
+    {
+      title: "Spam Detection Classifier",
+      desc: "Built a supervised classification model to detect spam messages using text preprocessing and NLP techniques.",
+      tech: ["Python", "Scikit-learn", "NLP"],
+      link: null,
+      path: "~/ml/spam-detection",
+    },
+    {
       title: "Medici — Enterprise SaaS Integrated Webapp",
-      desc: "Large-scale company web application built independently for a Japanese client, unifying Zoom, Slack, Notion, Vimeo, and Stripe into one system, plus a YouTube-style video streaming module built from scratch for educational content delivery.",
+      desc: "Large-scale company web application built independently for a Japanese client, unifying Zoom, Slack, Notion, Vimeo, Excel, and Stripe into one system, plus a YouTube-style video streaming module built from scratch for educational content delivery.",
       tech: ["Redis", "ngrok", "Third-Party APIs"],
       link: null,
       path: "~/private/medici",
@@ -531,9 +550,9 @@ export default function App() {
                   <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8 border-l-2 border-green-500/30 pl-4">
                     Computer Science graduate with professional experience in
                     backend systems, scalable APIs, and cloud-based applications
-                    — now thinking of pursuing graduate study in Artificial Intelligence to
-                    build toward machine learning, intelligent systems, and
-                    AI-driven software.
+                    — now thinking of pursuing graduate study in Artificial
+                    Intelligence to build toward machine learning, intelligent
+                    systems, and AI-driven software.
                   </p>
 
                   <div className="flex flex-wrap gap-3 mb-6">
